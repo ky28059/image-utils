@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Utility scripts for managing transferred iPhone photos.",
   "scripts": {
+    "info": "ts-node scripts/info.ts",
     "test": "ts-node scripts/testSingle.ts"
   },
   "author": "ky28059",
