@@ -3,7 +3,8 @@ import heicDecode from 'heic-decode';
 import sharp, { Sharp } from 'sharp';
 
 
-export async function optimize(path: string) {
+export async function optimize(path: string, outPath?: string) {
+    const [, file, ext] = path.match(/(.+?)(\.\w+)/)!;
     let img: Sharp;
 
     // Convert HEICs to JPGs before sharp
@@ -21,5 +22,5 @@ export async function optimize(path: string) {
     await img
         //.jpeg({ mozjpeg: true, quality: 75 })
         .webp({ effort: 4, quality: 75 })
-        .toFile(path.replace('.HEIC', '.webp'))
+        .toFile(outPath ?? `${file}.webp`)
 }

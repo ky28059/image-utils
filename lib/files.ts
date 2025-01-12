@@ -1,7 +1,6 @@
 import { readdir } from 'node:fs/promises';
+import { BASE_DIR } from '../config';
 
-
-const BASE_DIR = '../../../Vacation Photos'
 
 function getResolvedFileName(file: string, dir: string[]) {
     // IMG_1234 -> IMG_E1234
