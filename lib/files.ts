@@ -1,5 +1,5 @@
 import { readdir } from 'node:fs/promises';
-import { BASE_PATH } from '../config';
+import { BASE_PATH, OUT_PATH } from '../config';
 
 
 /**
@@ -22,7 +22,7 @@ function getResolvedFileName(file: string, dir: string[]) {
 
 async function getPhotosForDir(dir: string) {
     const files = (await readdir(dir, { withFileTypes: true }))
-        .filter((f) => !f.isDirectory() && !f.name.endsWith('.AAE'))
+        .filter((f) => !f.isDirectory() && !f.name.toLowerCase().endsWith('.aae') && !f.name.toLowerCase().endsWith('.mov'))
         .map((f) => f.name);
 
     return [...new Set(files.map((f) => getResolvedFileName(f, files)))];
@@ -37,4 +37,13 @@ export async function getAllPhotos() {
         name: d,
         files: await getPhotosForDir(`${BASE_PATH}/${d}`)
     })))
+}
+
+export async function getExistingOptimizedPhotoNames(name: string) {
+    try {
+        const files = await readdir(`${OUT_PATH}/${name}`);
+        return new Set(files.map(s => s.split('.')[0]));
+    } catch {
+        return new Set<string>();
+    }
 }
