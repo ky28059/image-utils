@@ -1,1 +1,1 @@
-export const BASE_DIR = '../../../Vacation Photos'
+export const BASE_PATH = '../../../Vacation Photos'

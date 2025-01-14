@@ -1,5 +1,5 @@
 import { readdir } from 'node:fs/promises';
-import { BASE_DIR } from '../config';
+import { BASE_PATH } from '../config';
 
 
 /**
@@ -29,12 +29,12 @@ async function getPhotosForDir(dir: string) {
 }
 
 export async function getAllPhotos() {
-    const dirs = (await readdir(BASE_DIR, { withFileTypes: true }))
+    const dirs = (await readdir(BASE_PATH, { withFileTypes: true }))
         .filter((f) => f.isDirectory() && !f.name.startsWith('['))
         .map((f) => f.name);
 
     return Promise.all(dirs.map(async (d) => ({
         name: d,
-        files: await getPhotosForDir(`${BASE_DIR}/${d}`)
+        files: await getPhotosForDir(`${BASE_PATH}/${d}`)
     })))
 }
