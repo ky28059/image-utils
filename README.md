@@ -1,6 +1,20 @@
 # image-utils
  Utility scripts for managing and hosting transferred iPhone photos.
 
+Run
+```bash
+npm run info
+```
+to display parsed information about the photo directory structure,
+```bash
+npm run all
+```
+to process and optimize all photos, and
+```bash
+npm start
+```
+to start the photo server.
+
 ### About
 The main idea with this project was to create an image server capable of hosting the many photos I've taken over the
 years. To process these photos for the web,
