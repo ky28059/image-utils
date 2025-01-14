@@ -3,17 +3,20 @@
   "version": "1.0.0",
   "description": "Utility scripts for managing transferred iPhone photos.",
   "scripts": {
+    "start": "ts-node server.ts",
     "info": "ts-node scripts/info.ts",
     "test": "ts-node scripts/testSingle.ts"
   },
   "author": "ky28059",
   "license": "MIT",
   "dependencies": {
+    "express": "^4.21.2",
     "heic-convert": "^2.1.0",
     "heic-decode": "^2.0.0",
     "sharp": "^0.33.5"
   },
   "devDependencies": {
+    "@types/express": "^5.0.0",
     "@types/heic-convert": "^2.1.0",
     "@types/heic-decode": "^1.1.2",
     "ts-node": "^10.9.2",
