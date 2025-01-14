@@ -1,7 +1,10 @@
 import { mkdir, rm } from 'node:fs/promises';
 
+// Utils
 import { optimize } from '../lib/optimize'
-import { getAllPhotos, getExistingOptimizedPhotoNames } from '../lib/files';
+import { getAllPhotos, getExistingOptimizedPhotoNames, filename } from '../lib/files';
+
+// Config
 import { BASE_PATH, OUT_PATH } from '../config';
 
 
@@ -12,7 +15,7 @@ import { BASE_PATH, OUT_PATH } from '../config';
         console.log(`Processing ${name}`);
 
         const existing = await getExistingOptimizedPhotoNames(name);
-        const remaining = files.filter((f) => !existing.has(f.split('.')[0]));
+        const remaining = files.filter((f) => !existing.has(filename(f)));
 
         console.log(remaining.length === 0 ? 'No changes found.' : `Optimizing ${remaining.length} photos:`);
 
@@ -22,12 +25,12 @@ import { BASE_PATH, OUT_PATH } from '../config';
         // Optimize all files that don't already exist in `/out`
         for (const file of remaining) {
             console.log(`↳ ${file}`);
-            await optimize(`${BASE_PATH}/${name}/${file}`, `${OUT_PATH}/${name}/${file.split('.')[0]}-preview.webp`);
+            await optimize(`${BASE_PATH}/${name}/${file}`, `${OUT_PATH}/${name}/${filename(file)}-preview.webp`);
         }
 
         // Delete any previously optimized photos that no longer exist in source
         for (const file of files) {
-            existing.delete(file.split('.')[0])
+            existing.delete(filename(file))
         }
 
         if (existing.size > 0) {

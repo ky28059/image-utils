@@ -39,10 +39,14 @@ export async function getAllPhotos() {
     })))
 }
 
+export function filename(file: string) {
+    return file.replace(/\.[^/.]+$/, '');
+}
+
 export async function getExistingOptimizedPhotoNames(name: string) {
     try {
         const files = await readdir(`${OUT_PATH}/${name}`);
-        return new Set(files.map(s => s.split('.')[0]));
+        return new Set(files.map(s => filename(s).slice(0, -8))); // Trim `-preview` suffix
     } catch {
         return new Set<string>();
     }
