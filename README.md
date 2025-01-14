@@ -1,6 +1,15 @@
 # image-utils
  Utility scripts for managing and hosting transferred iPhone photos.
 
+### About
+The main idea with this project was to create an image server capable of hosting the many photos I've taken over the
+years. To process these photos for the web,
+
+1. Each photo needs to be converted to a web-renderable file format (see next section).
+2. Each photo needs to be optimized for size with minimal loss of quality (~2 MB → ~400 KB).
+3. "Duplicated" photos need to be coalesced (e.g. if a folder contains both an edited and non-edited version of a photo,
+keep only the edited version) and non-photo files (any stray `.AAE`s) need to be ignored.
+
 ### The trouble with HEICs
 Some time around June 2023, iPhone photos started transferring by default as HEICs instead of as JPGs as they did before.
 

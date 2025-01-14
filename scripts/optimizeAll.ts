@@ -22,7 +22,7 @@ import { BASE_PATH, OUT_PATH } from '../config';
         // Optimize all files that don't already exist in `/out`
         for (const file of remaining) {
             console.log(`↳ ${file}`);
-            await optimize(`${BASE_PATH}/${name}/${file}`, `${OUT_PATH}/${name}/${file.split('.')[0]}.webp`);
+            await optimize(`${BASE_PATH}/${name}/${file}`, `${OUT_PATH}/${name}/${file.split('.')[0]}-preview.webp`);
         }
 
         // Delete any previously optimized photos that no longer exist in source
@@ -36,7 +36,7 @@ import { BASE_PATH, OUT_PATH } from '../config';
 
             for (const file of existing) {
                 console.log(`↳ ${file}`);
-                await rm(`${OUT_PATH}/${name}/${file}.webp`);
+                await rm(`${OUT_PATH}/${name}/${file}-preview.webp`);
             }
         }
 
