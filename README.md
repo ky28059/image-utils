@@ -16,7 +16,7 @@ img = sharp(new Uint8Array(data), {
 });
 ```
 
-<!-- insert video -->
+https://github.com/user-attachments/assets/8077a720-78a3-4b1f-9ee8-cd7c9b670cf9
 
 While initially I thought this was due to HEICs supporting 10-bit color, this is actually due to color
 spaces: namely, HEIC uses the [Display P3](https://en.wikipedia.org/wiki/DCI-P3) colorspace, which is slightly wider
@@ -32,7 +32,7 @@ ImageMagick), a lot of the dark colors get washed out:
 magick IMG_E4106.HEIC -profile ..\sRGB_v4_ICC_preference.icc IMG_E4106.jpg
 ```
 
-<!-- insert video -->
+https://github.com/user-attachments/assets/3202e94b-ad97-4491-bd34-0eb7844e2962
 
 - Using [`sRGB v4 appearance`](https://www.color.org/profiles/srgb_appearance.xalter) is better, but still a bit faded:
 
@@ -40,7 +40,7 @@ magick IMG_E4106.HEIC -profile ..\sRGB_v4_ICC_preference.icc IMG_E4106.jpg
 magick IMG_E4106.HEIC -profile ..\sRGB_ICC_v4_Appearance.icc IMG_E4106.jpg
 ```
 
-<!-- insert video -->
+https://github.com/user-attachments/assets/90e5595d-d56b-4cbc-b92f-159c07f12896
 
 What I didn't realize was that you can just have a JPG that uses the Display P3 color space. While this *still* loses
 some color, it is the best option by far.
