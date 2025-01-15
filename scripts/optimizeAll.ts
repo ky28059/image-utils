@@ -10,12 +10,15 @@ import { BASE_PATH, OUT_PATH } from '../config';
 
 ;(async () => {
     const dirs = await getAllPhotos();
+    const force = process.argv[2] === '--force'; // TODO: use argparse?
 
     for (const { name, files } of dirs) {
         console.log(`Processing ${name}`);
 
         const existing = await getExistingOptimizedPhotoNames(name);
-        const remaining = files.filter((f) => !existing.has(filename(f)));
+        const remaining = force
+            ? files
+            : files.filter((f) => !existing.has(filename(f)));
 
         console.log(remaining.length === 0 ? 'No changes found.' : `Optimizing ${remaining.length} photos:`);
 
