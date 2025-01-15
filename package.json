@@ -11,12 +11,14 @@
   "author": "ky28059",
   "license": "MIT",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.21.2",
     "heic-convert": "^2.1.0",
     "heic-decode": "^2.0.0",
     "sharp": "^0.33.5"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
     "@types/heic-convert": "^2.1.0",
     "@types/heic-decode": "^1.1.2",

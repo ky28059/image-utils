@@ -1,14 +1,26 @@
 import express from 'express';
+import cors from 'cors';
+
+// Utils
+import { getAllPhotos } from './lib/files';
 import { BASE_PATH, OUT_PATH } from './config';
 
 
-const server = express();
+;(async () => {
+    const app = express();
+    app.use(cors())
 
-// Serve all "raw photos" as-is from the base directory, as well as the processed, optimized
-// web-friendly photos from `/out`.
-server.use(express.static(BASE_PATH));
-server.use(express.static(OUT_PATH));
+    const dirs = await getAllPhotos();
+    app.get('/info', async (req, res) => {
+        res.json(dirs);
+    });
 
-server.listen(3000, () => {
-    console.log('Server listening on port 3000')
-});
+    // Serve all "raw photos" as-is from the base directory, as well as the processed, optimized
+    // web-friendly photos from `/out`.
+    app.use(express.static(BASE_PATH));
+    app.use(express.static(OUT_PATH));
+
+    app.listen(8000, () => {
+        console.log('Server listening on port 8000')
+    });
+})();
