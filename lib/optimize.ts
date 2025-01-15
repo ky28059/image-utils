@@ -17,6 +17,7 @@ export async function optimize(path: string, outPath?: string) {
 
     await img
         //.jpeg({ mozjpeg: true, quality: 75 })
+        .rotate() // https://stackoverflow.com/questions/48716266/sharp-image-library-rotates-image-when-resizing
         .webp({ effort: 4, quality: 75 })
         .toFile(outPath ?? `${file}.webp`)
 }
