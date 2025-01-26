@@ -1,6 +1,10 @@
 import { readdir } from 'node:fs/promises';
+import { extname } from 'node:path';
 import { BASE_PATH, OUT_PATH } from '../config';
 
+
+// TODO: handle videos (.mov and .mp4)?
+const ALLOWED_EXT = new Set(['.heic', '.jpg', 'jpeg', '.png'])
 
 /**
  * Gets the resolved file name for a given image file. Specifically, if an edited version of an image
@@ -22,7 +26,7 @@ function getResolvedFileName(file: string, dir: string[]) {
 
 async function getPhotosForDir(dir: string) {
     const files = (await readdir(dir, { withFileTypes: true }))
-        .filter((f) => !f.isDirectory() && !f.name.toLowerCase().endsWith('.aae') && !f.name.toLowerCase().endsWith('.mov'))
+        .filter((f) => !f.isDirectory() && ALLOWED_EXT.has(extname(f.name).toLowerCase()))
         .map((f) => f.name);
 
     return [...new Set(files.map((f) => getResolvedFileName(f, files)))];
