@@ -11,9 +11,19 @@ import { BASE_PATH, OUT_PATH } from './config';
     app.use(cors())
 
     const dirs = await getAllPhotos();
+    const dirMap = Object.fromEntries(dirs.map(({ name, files }) => [name, files]));
+    const dirInfo = dirs.map(({ name, files }) => ({ name, size: files.length })); // TODO?
+
     app.get('/info', async (req, res) => {
-        res.json(dirs);
+        res.json(dirInfo);
     });
+    app.get('/info/:id', async (req, res) => {
+        try {
+            res.json(dirMap[req.params.id]);
+        } catch {
+            res.status(400).json({ error: 'Directory not found.' });
+        }
+    })
 
     // Serve all "raw photos" as-is from the base directory, as well as the processed, optimized
     // web-friendly photos from `/out`.
