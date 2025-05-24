@@ -2,7 +2,7 @@ import { spawn } from 'node:child_process';
 import sharp, { Sharp } from 'sharp';
 
 
-export async function optimize(path: string, outPath?: string) {
+export async function optimize(path: string, outPath?: string) { // TODO
     const [, file, ext] = path.match(/(.+?)(\.\w+)/)!;
     let img: Sharp;
 
@@ -15,11 +15,11 @@ export async function optimize(path: string, outPath?: string) {
         img = sharp(path);
     }
 
-    await img
+    return img
         //.jpeg({ mozjpeg: true, quality: 75 })
         .rotate() // https://stackoverflow.com/questions/48716266/sharp-image-library-rotates-image-when-resizing
         .webp({ effort: 4, quality: 75 })
-        .toFile(outPath ?? `${file}.webp`)
+        .toBuffer()
 }
 
 function streamJPGFromImgMagick(path: string): Promise<Buffer> {
