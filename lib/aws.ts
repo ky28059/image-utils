@@ -17,6 +17,11 @@ const s3 = new S3Client({
     }
 });
 
+/**
+ * Iteratively fetches all contents of the given bucket.
+ * @param bucket The bucket to list.
+ * @returns A concatenated list of all contents in the bucket.
+ */
 export async function getAllContentsInBucket(bucket: string) {
     const res: _Object[] = [];
 
@@ -30,13 +35,30 @@ export async function getAllContentsInBucket(bucket: string) {
     }
 }
 
+/**
+ * Deletes the given keys in the given bucket.
+ * @param bucket The bucket to delete from.
+ * @param keys The keys to delete.
+ */
+export async function deleteKeysInBucket(bucket: string, keys: string[]) {
+    await s3.send(
+        new DeleteObjectsCommand({
+            Bucket: bucket,
+            Delete: { Objects: keys.map((k) => ({ Key: k })) }
+        })
+    )
+}
+
+/**
+ * Fetches all photos from S3, grouped by directory name.
+ * @returns An object of type `{ [dir: string]: string[] }` mapping subdirectories to photos.
+ */
 export async function getAllHostedPhotos() {
     const res: { [dir: string]: string[] } = {};
     const contents = await getAllContentsInBucket(PHOTOS_BUCKET);
 
     for (const { Key } of contents) {
         if (!Key) continue;
-        if (filename(Key).endsWith('-preview')) continue; // Skip optimized images
 
         const [dir, name] = Key.split('/');
         if (!res[dir]) res[dir] = [];
