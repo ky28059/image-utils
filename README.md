@@ -1,6 +1,12 @@
 # image-utils
  Utility scripts for managing and hosting transferred iPhone photos.
 
+To run locally, create a `.env` exporting your S3 IAM account credentials like so:
+```env
+ACCESS_KEY_ID=...
+SECRET_ACCESS_KEY=...
+```
+(see **Setting up S3** for how to generate these).
 Run
 ```bash
 npm run info
@@ -87,3 +93,41 @@ magick IMG_E4106.HEIC IMG_E4106.jpg
 
 Then, the script can just send the [ImageMagick output to stdout](https://stackoverflow.com/questions/67269725/convert-image-from-one-format-to-another-sent-to-stdout),
 piping it into `sharp` for the rest of the optimization.
+
+### Setting up S3
+For scalability and pricing concerns, this project uses AWS S3 as a backend for image hosting. To set up S3, create a
+bucket to store raw photos and another bucket to store their optimized, web-friendly previews.
+
+![image](https://github.com/user-attachments/assets/f4e0dd64-6aa2-492f-8610-31693f5ef61b)
+
+To allow programmatic access to S3, create an IAM user in the [AWS IAM dashboard](https://us-east-1.console.aws.amazon.com/iam/home).
+For simplicity, under permissions we can just grant `AmazonS3FullAccess`:
+
+![image](https://github.com/user-attachments/assets/5b142b81-775d-4ffa-9a5d-083cdb9d191b)
+
+After creating this user, create an access key in the console like so:
+
+![image](https://github.com/user-attachments/assets/b880368f-4f63-49a3-8902-9d6720cd1d6d)
+
+Once done, copy the access key ID and secret access key into your `.env` above:
+
+![image](https://github.com/user-attachments/assets/fc7b2351-cd83-48d5-a249-793a999be75d)
+
+Finally, to allow public access to the S3-hosted photos, we need to set a bucket policy on the preview and photos buckets.
+Under **Bucket policy**, add something like
+```json
+{
+    "Version": "2012-10-17",
+    "Id": "Policy1697863280179",
+    "Statement": [
+        {
+            "Sid": "Stmt1697863276774",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::[bucket-name-here]/*"
+        }
+    ]
+}
+```
+to allow read access on all items in the bucket.

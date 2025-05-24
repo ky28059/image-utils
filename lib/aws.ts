@@ -51,23 +51,24 @@ export async function optimizeAndUploadFile(dir: string, file: string) {
     const absPath = `${BASE_PATH}/${dir}/${file}`;
 
     const rawBody = await readFile(absPath);
-    await s3.send(
-        new PutObjectCommand({
-            Bucket: PHOTOS_BUCKET,
-            Body: rawBody,
-            Key: `${dir}/${file}`
-        })
-    );
-
-    // Optimize and upload preview file
     const optimizedBody = await optimize(absPath);
-    await s3.send(
-        new PutObjectCommand({
-            Bucket: PREVIEW_BUCKET,
-            Body: optimizedBody,
-            Key: `${dir}/${filename(file)}-preview.webp`
-        })
-    );
+
+    await Promise.all([
+        s3.send(
+            new PutObjectCommand({
+                Bucket: PHOTOS_BUCKET,
+                Body: rawBody,
+                Key: `${dir}/${file}`
+            })
+        ),
+        s3.send(
+            new PutObjectCommand({
+                Bucket: PREVIEW_BUCKET,
+                Body: optimizedBody,
+                Key: `${dir}/${filename(file)}-preview.webp`
+            })
+        )
+    ]);
 }
 
 export async function deleteUploadedFile(dir: string, file: string) {
