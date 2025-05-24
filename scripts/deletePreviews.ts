@@ -1,6 +1,6 @@
-import { deleteKeysInBucket, getAllContentsInBucket } from '../lib/aws';
-import { filename } from '../lib/files';
-import { PHOTOS_BUCKET } from '../config';
+import { deleteKeysInBucket, getAllContentsInBucket } from '@/lib/aws';
+import { filename } from '@/lib/files';
+import { PHOTOS_BUCKET } from '@/config';
 
 
 ;(async () => {

@@ -13,6 +13,14 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "downlevelIteration": true,
-    "moduleResolution": "node16"
+    "moduleResolution": "node16",
+
+    "paths": {
+      "@/*": ["./*"]
+    }
+  },
+
+  "ts-node": {
+    "require": ["tsconfig-paths/register"]
   }
 }

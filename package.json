@@ -6,9 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "info": "ts-node scripts/info.ts",
-    "single": "ts-node scripts/optimizeSingle.ts",
-    "all": "node -r ts-node/register --env-file=.env scripts/uploadAll.ts"
+    "info": "ts-node -P tsconfig.node.json scripts/info.ts",
+    "single": "ts-node -P tsconfig.node.json scripts/optimizeSingle.ts",
+    "all": "set TS_NODE_PROJECT=tsconfig.node.json&& node -r ts-node/register --env-file=.env scripts/uploadAll.ts"
   },
   "author": "ky28059",
   "license": "MIT",
@@ -33,6 +33,7 @@
     "@types/react": "^19.1.5",
     "@types/react-dom": "^19.1.5",
     "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
     "typescript": "^5.7.3"
   }
 }

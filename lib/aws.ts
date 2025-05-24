@@ -6,7 +6,7 @@ import { optimize } from './optimize';
 import { filename } from './files';
 
 // Config
-import { BASE_PATH, PHOTOS_BUCKET, PREVIEW_BUCKET } from '../config';
+import { BASE_PATH, PHOTOS_BUCKET, PREVIEW_BUCKET } from '@/config';
 
 
 const s3 = new S3Client({

@@ -1,6 +1,6 @@
 import { readdir } from 'node:fs/promises';
 import { extname } from 'node:path';
-import { BASE_PATH, OUT_PATH } from '../config';
+import { BASE_PATH, OUT_PATH } from '@/config';
 
 
 // TODO: handle videos (.mov and .mp4)?
@@ -56,13 +56,4 @@ export async function getAllPhotos() {
 
 export function filename(file: string) {
     return file.replace(/\.[^/.]+$/, '');
-}
-
-export async function getExistingOptimizedPhotoNames(name: string) {
-    try {
-        const files = await readdir(`${OUT_PATH}/${name}`);
-        return new Set(files.map(s => filename(s).slice(0, -8))); // Trim `-preview` suffix
-    } catch {
-        return new Set<string>();
-    }
 }

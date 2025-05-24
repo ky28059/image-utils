@@ -1,4 +1,4 @@
-import { getAllPhotos } from '../lib/files';
+import { getAllPhotos } from '@/lib/files';
 
 
 ;(async () => {

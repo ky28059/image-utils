@@ -1,4 +1,4 @@
-import { optimize } from '../lib/optimize'
+import { optimize } from '@/lib/optimize'
 
 
 ;(async () => {

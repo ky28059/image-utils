@@ -1,5 +1,5 @@
-import { getAllPhotos } from '../lib/files';
-import { deleteUploadedFile, getAllHostedPhotos, optimizeAndUploadFile } from '../lib/aws';
+import { getAllPhotos } from '@/lib/files';
+import { deleteUploadedFile, getAllHostedPhotos, optimizeAndUploadFile } from '@/lib/aws';
 
 
 ;(async () => {
