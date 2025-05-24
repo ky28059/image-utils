@@ -20,7 +20,7 @@ import { deleteUploadedFile, getAllHostedPhotos, optimizeAndUploadFile } from '.
 
         console.log(remaining.length === 0 ? 'No changes found.' : `Optimizing ${remaining.length} photos:`);
 
-        // Optimize all files that don't already exist in `/out`
+        // Optimize and upload all files that don't already exist on S3
         for (const file of remaining) {
             console.log(`↳ ${file}`);
             await optimizeAndUploadFile(name, file);

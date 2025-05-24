@@ -1,4 +1,4 @@
-import { DeleteObjectsCommand, ListObjectsCommand, PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
+import { _Object, DeleteObjectsCommand, ListObjectsCommand, PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
 import { readFile } from 'node:fs/promises';
 
 // Utils
@@ -17,13 +17,24 @@ const s3 = new S3Client({
     }
 });
 
+async function getAllContentsInBucket(bucket: string) {
+    const res: _Object[] = [];
+
+    while (true) {
+        const { Contents } = await s3.send(new ListObjectsCommand({
+            Bucket: bucket,
+            Marker: res.at(-1)?.Key
+        }));
+        if (!Contents) return res;
+        res.push(...Contents);
+    }
+}
+
 export async function getAllHostedPhotos() {
-    const { Contents } = await s3.send(new ListObjectsCommand({ Bucket: PHOTOS_BUCKET }));
-
     const res: { [dir: string]: string[] } = {};
-    if (!Contents) return res;
+    const contents = await getAllContentsInBucket(PHOTOS_BUCKET);
 
-    for (const { Key } of Contents) {
+    for (const { Key } of contents) {
         if (!Key) continue;
         if (filename(Key).endsWith('-preview')) continue; // Skip optimized images
 
