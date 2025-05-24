@@ -1,0 +1,78 @@
+'use client'
+
+import { useState } from 'react';
+import { useHotkeys } from 'react-hotkeys-hook';
+
+// Components
+import ClickablePhoto from '@/app/[id]/ClickablePhoto';
+import CenteredModal from '@/components/CenteredModal';
+
+// Utils
+import { filename } from '@/util/files';
+
+
+type PhotoGridProps = {
+    files: string[],
+    dir: string,
+}
+export default function PhotoGrid(props: PhotoGridProps) {
+    const [open, setOpen] = useState(false);
+    const [selected, setSelected] = useState(0);
+
+    function openModalToFile(id: number) {
+        setSelected(id);
+        setOpen(true);
+    }
+
+    function decSelected() {
+        setSelected((s) => Math.max(s - 1, 0))
+    }
+
+    function incSelected() {
+        setSelected((s) => Math.min(s + 1, props.files.length - 1))
+    }
+
+    // Decrement and increment image hotkeys
+    useHotkeys('left', decSelected, []);
+    useHotkeys('right', incSelected, []);
+
+    return (
+        <div className="grid grid-cols-[repeat(auto-fill,_minmax(200px,_1fr))] gap-3 mb-6 mt-8">
+            {props.files.map((f, i) => (
+                <ClickablePhoto
+                    dir={props.dir}
+                    file={f}
+                    key={f}
+                    openModal={openModalToFile.bind(null, i)}
+                />
+            ))}
+
+            <CenteredModal
+                className="relative flex flex-col max-w-[70%]"
+                isOpen={open}
+                setIsOpen={setOpen}
+            >
+                <button
+                    className="fixed left-4 inset-y-0 text-secondary hover:text-white transition duration-200"
+                    onClick={decSelected}
+                >
+                    {'<'}
+                </button>
+
+                <button
+                    className="fixed right-4 inset-y-0 text-secondary hover:text-white transition duration-200"
+                    onClick={incSelected}
+                >
+                    {'>'}
+                </button>
+
+                <img
+                    src={`http://localhost:8000/${props.dir}/${filename(props.files[selected])}-preview.webp`}
+                    className="max-h-[80vh]"
+                    alt={props.files[selected]}
+                />
+                <p className="text-sm mt-1.5">{props.files[selected]}</p>
+            </CenteredModal>
+        </div>
+    )
+}

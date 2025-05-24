@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Utility scripts for managing transferred iPhone photos.",
   "scripts": {
-    "start": "ts-node server.ts",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
     "info": "ts-node scripts/info.ts",
     "single": "ts-node scripts/optimizeSingle.ts",
     "all": "node -r ts-node/register --env-file=.env scripts/uploadAll.ts"
@@ -12,17 +14,28 @@
   "license": "MIT",
   "dependencies": {
     "@aws-sdk/client-s3": "^3.816.0",
+    "@headlessui/react": "^2.2.0",
+    "autoprefixer": "10.4.20",
     "cors": "^2.8.5",
     "express": "^4.21.2",
     "heic-convert": "^2.1.0",
     "heic-decode": "^2.0.0",
-    "sharp": "^0.33.5"
+    "next": "^15.3.2",
+    "postcss": "8.5.1",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-hotkeys-hook": "^4.6.1",
+    "sharp": "^0.33.5",
+    "tailwindcss": "3.4.17"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
     "@types/heic-convert": "^2.1.0",
     "@types/heic-decode": "^1.1.2",
+    "@types/node": "^22.10.6",
+    "@types/react": "^19.1.5",
+    "@types/react-dom": "^19.1.5",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.3"
   }
