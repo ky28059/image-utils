@@ -16,8 +16,6 @@
     "@aws-sdk/client-s3": "^3.816.0",
     "@headlessui/react": "^2.2.0",
     "autoprefixer": "10.4.20",
-    "cors": "^2.8.5",
-    "express": "^4.21.2",
     "heic-convert": "^2.1.0",
     "heic-decode": "^2.0.0",
     "next": "^15.3.2",
@@ -29,8 +27,6 @@
     "tailwindcss": "3.4.17"
   },
   "devDependencies": {
-    "@types/cors": "^2.8.17",
-    "@types/express": "^5.0.0",
     "@types/heic-convert": "^2.1.0",
     "@types/heic-decode": "^1.1.2",
     "@types/node": "^22.10.6",
