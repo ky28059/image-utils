@@ -15,9 +15,22 @@ npm start
 ```
 to start the photo server.
 
-### About
+### About this project
 The main idea with this project was to create an image server capable of hosting the many photos I've taken over the
-years. To process these photos for the web,
+years. I transfer most of my photos to my computer, where they are sorted by date / event in the following structure:
+```
+Photos
+|___ 2024-08-12 Santa Cruz
+|    |___ IMG_...
+|    |___ IMG_...
+|
+|___ 2025-05-11 ...
+     |___ ...
+```
+I wanted to be able to send shareable links for certain folders to people, but OneDrive was a little inconvenient to use
+and not primarily designed for photo sharing (plus, I wanted custom behavior for edited photos).
+
+To process these photos for the web,
 
 1. Each photo needs to be converted to a web-renderable file format (see next section).
 2. Each photo needs to be optimized for size with minimal loss of quality (~2 MB → ~400 KB).

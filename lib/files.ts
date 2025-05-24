@@ -24,6 +24,13 @@ function getResolvedFileName(file: string, dir: string[]) {
     return editedFilename ?? file;
 }
 
+/**
+ * Gets a list of all resolved photo names for the given directory, e.g. skipping non-allowed file extensions and
+ * resolving edited photos.
+ *
+ * @param dir The directory to parse.
+ * @returns An array of resolved photo names.
+ */
 async function getPhotosForDir(dir: string) {
     const files = (await readdir(dir, { withFileTypes: true }))
         .filter((f) => !f.isDirectory() && ALLOWED_EXT.has(extname(f.name).toLowerCase()))
@@ -32,6 +39,10 @@ async function getPhotosForDir(dir: string) {
     return [...new Set(files.map((f) => getResolvedFileName(f, files)))];
 }
 
+/**
+ * Gets all photos in the base directory, ignoring excluded folders.
+ * @returns An array of { name, photos } for each subdirectory of the base directory.
+ */
 export async function getAllPhotos() {
     const dirs = (await readdir(BASE_PATH, { withFileTypes: true }))
         .filter((f) => f.isDirectory() && !f.name.startsWith('['))
