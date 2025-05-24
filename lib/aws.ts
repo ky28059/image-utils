@@ -6,7 +6,7 @@ import { optimize } from './optimize';
 import { filename } from './files';
 
 // Config
-import { BASE_PATH, PHOTOS_BUCKET } from '../config';
+import { BASE_PATH, PHOTOS_BUCKET, PREVIEW_BUCKET } from '../config';
 
 
 const s3 = new S3Client({
@@ -17,7 +17,7 @@ const s3 = new S3Client({
     }
 });
 
-async function getAllContentsInBucket(bucket: string) {
+export async function getAllContentsInBucket(bucket: string) {
     const res: _Object[] = [];
 
     while (true) {
@@ -63,7 +63,7 @@ export async function optimizeAndUploadFile(dir: string, file: string) {
     const optimizedBody = await optimize(absPath);
     await s3.send(
         new PutObjectCommand({
-            Bucket: PHOTOS_BUCKET,
+            Bucket: PREVIEW_BUCKET,
             Body: optimizedBody,
             Key: `${dir}/${filename(file)}-preview.webp`
         })
@@ -71,16 +71,18 @@ export async function optimizeAndUploadFile(dir: string, file: string) {
 }
 
 export async function deleteUploadedFile(dir: string, file: string) {
-    await s3.send(
-        new DeleteObjectsCommand({
-            Bucket: PHOTOS_BUCKET,
-            Delete: {
-                Objects: [{
-                    Key: `${dir}/${file}`
-                }, {
-                    Key: `${dir}/${filename(file)}-preview.webp`
-                }]
-            }
-        })
-    );
+    await Promise.all([
+        s3.send(
+            new DeleteObjectsCommand({
+                Bucket: PHOTOS_BUCKET,
+                Delete: { Objects: [{ Key: `${dir}/${file}` }] }
+            })
+        ),
+        s3.send(
+            new DeleteObjectsCommand({
+                Bucket: PREVIEW_BUCKET,
+                Delete: { Objects: [{ Key: `${dir}/${filename(file)}-preview.webp` }] }
+            })
+        )
+    ]);
 }
