@@ -3,7 +3,7 @@ import { readFile } from 'node:fs/promises';
 
 // Utils
 import { optimize } from './optimize';
-import { filename } from './files';
+import { filename } from './util';
 
 // Config
 import { BASE_PATH, PHOTOS_BUCKET, PREVIEW_BUCKET } from '@/config';

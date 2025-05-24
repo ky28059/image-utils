@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import PhotoDirectory from '@/app/PhotoDirectory';
+import { getAllHostedPhotos } from '@/lib/aws';
 
 
 export type PhotoDirectoryInfo = {
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
 }
 
 export default async function Photos() {
-    const dirs: PhotoDirectoryInfo[] = await (await fetch('http://localhost:8000/info', { cache: 'no-store' })).json();
+    const dirs = await getAllHostedPhotos();
 
     return (
         <div className="container pt-20 pb-24">
@@ -22,8 +23,8 @@ export default async function Photos() {
             </h1>
 
             <div className="flex flex-col gap-1.5">
-                {dirs.map((d) => (
-                    <PhotoDirectory {...d} key={d.name} />
+                {Object.entries(dirs).map(([d, photos]) => (
+                    <PhotoDirectory name={d} size={photos.length} key={d} />
                 ))}
             </div>
         </div>

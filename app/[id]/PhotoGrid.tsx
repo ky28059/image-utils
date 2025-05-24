@@ -8,7 +8,7 @@ import ClickablePhoto from '@/app/[id]/ClickablePhoto';
 import CenteredModal from '@/components/CenteredModal';
 
 // Utils
-import { filename } from '@/util/files';
+import { fileToS3Url } from '@/lib/util';
 
 
 type PhotoGridProps = {
@@ -67,7 +67,7 @@ export default function PhotoGrid(props: PhotoGridProps) {
                 </button>
 
                 <img
-                    src={`http://localhost:8000/${props.dir}/${filename(props.files[selected])}-preview.webp`}
+                    src={fileToS3Url(props.dir, props.files[selected])}
                     className="max-h-[80vh]"
                     alt={props.files[selected]}
                 />

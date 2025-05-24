@@ -1,5 +1,5 @@
 import { deleteKeysInBucket, getAllContentsInBucket } from '@/lib/aws';
-import { filename } from '@/lib/files';
+import { filename } from '@/lib/util';
 import { PHOTOS_BUCKET } from '@/config';
 
 

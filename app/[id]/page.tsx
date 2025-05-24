@@ -4,6 +4,9 @@ import Link from 'next/link';
 // Components
 import PhotoGrid from '@/app/[id]/PhotoGrid';
 
+// Utils
+import { getAllHostedPhotos } from '@/lib/aws';
+
 
 export const metadata: Metadata = {
     title: 'Photos',
@@ -11,11 +14,14 @@ export const metadata: Metadata = {
 }
 
 export default async function PhotosPage({ params }: { params: Promise<{ id: string }> }) {
-    const dir = (await params).id;
-    const files: string[] = await (await fetch(`http://localhost:8000/info/${dir}`)).json();
+    const dir = decodeURIComponent((await params).id);
+
+    // TODO:
+    const dirs = await getAllHostedPhotos();
+    const files = dirs[dir];
 
     // Parse folder name structure
-    const [, date, name] = decodeURIComponent(dir).match(/(.+?) (.+)/)!;
+    const [, date, name] = dir.match(/(.+?) (.+)/)!;
 
     return (
         <main className="container pt-20 pb-24">

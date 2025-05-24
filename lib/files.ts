@@ -53,7 +53,3 @@ export async function getAllPhotos() {
         files: await getPhotosForDir(`${BASE_PATH}/${d}`)
     })))
 }
-
-export function filename(file: string) {
-    return file.replace(/\.[^/.]+$/, '');
-}
