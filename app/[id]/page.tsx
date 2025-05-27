@@ -5,8 +5,9 @@ import Link from 'next/link';
 import PhotoGrid from '@/app/[id]/PhotoGrid';
 
 // Utils
-import { getAllHostedPhotos } from '@/lib/aws';
 import { thumbnails } from '@/thumbnails';
+import { getAllHostedPhotos } from '@/lib/aws';
+import { fileToS3Url } from '@/lib/util';
 
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
@@ -23,7 +24,7 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
         title: name,
         description: `${files.length} photos on ${date}.`,
         openGraph: {
-            images: thumbnails[dir]
+            images: fileToS3Url(dir, thumbnails[dir])
         }
     }
 }
