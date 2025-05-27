@@ -1,22 +1,32 @@
 'use client'
 
 import Link from 'next/link';
-import type { PhotoDirectoryInfo } from './page';
+import { fileToS3Url } from '@/lib/util';
 
 
-export default function PhotoDirectory(props: PhotoDirectoryInfo) {
+type PhotoDirectoryProps = {
+    name: string,
+    size: number,
+    thumbnail?: string
+}
+
+export default function PhotoDirectory(props: PhotoDirectoryProps) {
     return (
         <Link
-            className="flex items-center border border-tertiary rounded text-left"
+            className="flex items-center border border-white/30 hover:border-white/75 transition duration-150 rounded text-left"
             href={`/${props.name}`}
         >
-            <img
-                src={`http://localhost:8000/${props.name}/${'hhh'}-preview.webp`}
-                className="h-16 w-28 object-cover object-center rounded-l"
-                alt={props.name}
-            />
-            <div className="py-2 px-4">
-                <h3 className="font-semibold">{props.name}</h3>
+            {props.thumbnail ? (
+                <img
+                    src={fileToS3Url(props.name, props.thumbnail)}
+                    className="h-[4.5rem] w-32 object-cover object-center rounded-l"
+                    alt={props.name}
+                />
+            ) : (
+                <div className="h-[4.5rem] w-32 bg-black/20" />
+            )}
+            <div className="pl-6 pr-2 px-4">
+                <h3 className="font-medium">{props.name}</h3>
                 <p className="text-sm text-secondary">
                     {props.size} photos
                 </p>
