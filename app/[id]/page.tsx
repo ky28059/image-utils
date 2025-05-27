@@ -17,12 +17,11 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
     const dirs = await getAllHostedPhotos();
     const files = dirs[dir];
 
-    // Parse folder name structure
-    const [, date, name] = dir.match(/(.+?) (.+)/)!;
+    const { date, name } = parseFolderName(dir);
 
     return {
         title: name,
-        description: `${files.length} photos on ${date}.`,
+        description: `${files.length} photos${date ? ` • ${date}` : ''}`,
         openGraph: {
             images: fileToS3Url(dir, thumbnails[dir])
         }
@@ -36,8 +35,7 @@ export default async function PhotosPage({ params }: { params: Promise<{ id: str
     const dirs = await getAllHostedPhotos();
     const files = dirs[dir];
 
-    // Parse folder name structure
-    const [, date, name] = dir.match(/(.+?) (.+)/)!;
+    const { date, name } = parseFolderName(dir);
 
     return (
         <main className="container pt-20 pb-24">
@@ -48,9 +46,11 @@ export default async function PhotosPage({ params }: { params: Promise<{ id: str
             <h1 className="text-4xl font-bold mb-3">
                 {name}
             </h1>
-            <p className="text-secondary">
-                {date}
-            </p>
+            {date && (
+                <p className="text-secondary">
+                    {date}
+                </p>
+            )}
             <p className="text-secondary">
                 {files.length} photos
             </p>
@@ -58,4 +58,17 @@ export default async function PhotosPage({ params }: { params: Promise<{ id: str
             <PhotoGrid files={files} dir={dir} />
         </main>
     )
+}
+
+function parseFolderName(dir: string) {
+    const matches = dir.match(/(\d{4}-\d{2}-\d{2}(?:@.+)?) (.+)/);
+    if (!matches) return {
+        name: dir,
+        date: null
+    }
+
+    return {
+        name: matches[2],
+        date: matches[1]
+    }
 }
