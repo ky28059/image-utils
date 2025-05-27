@@ -1,5 +1,21 @@
 // TODO
 export const thumbnails: Record<string, string> = {
+    '2018-03-24 San Francisco': 'P107E0019.jpg',
+    '2018-12-27 [...] Beach': 'P1080362.JPG',
+    '2019-06-01@24 China': 'IMG_E0548.JPG',
+    '2019-07-04 Shark Fin Cove': 'IMG_E0706.JPG',
+    '2020-01-25 San Francisco': 'IMG_E1439.JPG',
+    '2020-02-13@14[...] Skiing [...]': 'IMG_E1492.JPG', // TODO?
+    // '2021-09-18 GRT Beach Trip': 'IMG_3085.JPG',
+    '2021-09-18 GRT Beach Trip': 'IMG_3092.JPG',
+    '2022-06-08 Yu-Ting\'s birthday': 'IMG_E4509.JPG',
+    '2022-06-18 Microsoft SVC': 'IMG_E4772.JPG',
+    '2022-09-16@17 GRT Camping Trip': 'IMG_E5823.JPG',
+    '2023-03-25@26 GRT Paly scrimmage': 'IMG_E7324.JPG',
+    '2023-03-29 GRT Monterey Bay Aquarium': 'IMG_E7482.JPG',
+    '2023-05-30 Senior Picnic': 'IMG_E7906.JPG', // TODO?
+    '2023-08-03 Liang surprise birthday party': 'IMG_E8325.JPG',
+    '2023-08-19 Purdue B-Involved fair': 'IMG_E8435.JPG',
     '2023-09-30@10-01 UIUC': 'IMG_E8746.HEIC',
     '2024-04-08 Eclipse, Indianapolis': 'IMG_E0099.HEIC',
     '2024-05-05 Stanford walk': 'IMG_E0670.HEIC',
