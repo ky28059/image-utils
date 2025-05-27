@@ -25,6 +25,7 @@ export const thumbnails: Record<string, string> = {
     '2024-08-11 Mission Peak': 'IMG_E2835.HEIC',
     '2024-11-26@12-01 Chicago': 'IMG_E3726.HEIC',
     '2025-04-10@14 Pwnme, Paris': 'IMG_E5008.HEIC',
-    '2025-01-04@07 Shanghai': 'IMG_E4136.HEIC',
+    '2025-01-04@07 Shanghai': 'IMG_E4106.HEIC',
+    '2025-01-07@10 Tokyo': 'IMG_E4174.HEIC',
     '2025-05-20@23 Carlsbad, UCSD, La Jolla': 'IMG_E5688.HEIC',
 }
