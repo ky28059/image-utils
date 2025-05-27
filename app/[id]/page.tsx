@@ -6,6 +6,7 @@ import PhotoGrid from '@/app/[id]/PhotoGrid';
 
 // Utils
 import { getAllHostedPhotos } from '@/lib/aws';
+import { thumbnails } from '@/thumbnails';
 
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
@@ -20,7 +21,10 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
 
     return {
         title: name,
-        description: `${files.length} photos on ${date}.`
+        description: `${files.length} photos on ${date}.`,
+        openGraph: {
+            images: thumbnails[dir]
+        }
     }
 }
 
