@@ -23,7 +23,9 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
         title: name,
         description: `${files.length} photos${date ? ` • ${date}` : ''}`,
         openGraph: {
-            images: fileToS3Url(dir, thumbnails[dir])
+            images: thumbnails[dir]
+                ? fileToS3Url(dir, thumbnails[dir])
+                : undefined
         }
     }
 }
@@ -61,7 +63,7 @@ export default async function PhotosPage({ params }: { params: Promise<{ id: str
 }
 
 function parseFolderName(dir: string) {
-    const matches = dir.match(/(\d{4}-\d{2}-\d{2}(?:@.+)?) (.+)/);
+    const matches = dir.match(/(\d{4}-\d{2}-\d{2}(?:@[^ ]+)?) (.+)/);
     if (!matches) return {
         name: dir,
         date: null
