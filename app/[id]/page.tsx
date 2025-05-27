@@ -8,9 +8,20 @@ import PhotoGrid from '@/app/[id]/PhotoGrid';
 import { getAllHostedPhotos } from '@/lib/aws';
 
 
-export const metadata: Metadata = {
-    title: 'Photos',
-    description: '...'
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
+    const dir = decodeURIComponent((await params).id);
+
+    // TODO:
+    const dirs = await getAllHostedPhotos();
+    const files = dirs[dir];
+
+    // Parse folder name structure
+    const [, date, name] = dir.match(/(.+?) (.+)/)!;
+
+    return {
+        title: name,
+        description: `${files.length} photos on ${date}.`
+    }
 }
 
 export default async function PhotosPage({ params }: { params: Promise<{ id: string }> }) {
