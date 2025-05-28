@@ -8,7 +8,7 @@ import ClickablePhoto from '@/app/[id]/ClickablePhoto';
 import CenteredModal from '@/components/CenteredModal';
 
 // Utils
-import { fileToS3Url } from '@/lib/util';
+import { fileToS3Url, variants } from '@/lib/util';
 
 
 type PhotoGridProps = {
@@ -38,7 +38,7 @@ export default function PhotoGrid(props: PhotoGridProps) {
 
     return (
         <div className="grid grid-cols-[repeat(auto-fill,_minmax(200px,_1fr))] gap-3 mb-6 mt-8">
-            {props.files.map((f, i) => (
+            {props.files.sort((a, b) => variants(a).edited.localeCompare(variants(b).edited)).map((f, i) => (
                 <ClickablePhoto
                     dir={props.dir}
                     file={f}
