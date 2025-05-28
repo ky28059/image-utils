@@ -1,9 +1,9 @@
 import PhotoAlbum from '@/app/PhotoAlbum';
+import PhotoAlbumListItem from '@/app/PhotoAlbumListItem';
 
 // Utils
 import { thumbnails } from '@/thumbnails';
 import { parseFolderName } from '@/lib/util';
-import PhotoListItem from '@/app/PhotoListItem';
 
 
 type PhotosAlbumsViewProps = {
@@ -26,7 +26,7 @@ export default function PhotosAlbumsView(props: PhotosAlbumsViewProps) {
 
                 return (
                     <div
-                        className="relative flex flex-wrap gap-8"
+                        className="relative flex flex-wrap gap-6"
                         key={month}
                     >
                         <p className="absolute -left-[4.5rem] text-secondary text-sm">{month}</p>
@@ -47,10 +47,9 @@ export default function PhotosAlbumsView(props: PhotosAlbumsViewProps) {
                         {other.length > 0 && (
                             <div className="flex flex-col gap-2">
                                 {other.map(([d, photos]) => (
-                                    <PhotoListItem
+                                    <PhotoAlbumListItem
                                         name={d}
                                         size={photos.length}
-                                        thumbnail={thumbnails[d]}
                                         key={d}
                                     />
                                 ))}

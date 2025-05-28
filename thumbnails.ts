@@ -5,18 +5,18 @@ export const thumbnails: Record<string, string> = {
     '2019-06-01@24 China': 'IMG_E0548.JPG',
     '2019-07-04 Shark Fin Cove': 'IMG_E0706.JPG',
     '2020-01-25 San Francisco': 'IMG_E1439.JPG',
-    '2020-02-13@14[...] Skiing [...]': 'IMG_E1492.JPG', // TODO?
-    // '2021-09-18 GRT Beach Trip': 'IMG_3085.JPG',
+    '2020-02-13@14[...] Skiing [...]': 'IMG_E1499.JPG',
     '2021-09-18 GRT Beach Trip': 'IMG_3092.JPG',
+    '2021-09-06@10-15 Floats \'22': 'IMG_3183.JPG',
     '2022-06-08 Yu-Ting\'s birthday': 'IMG_E4509.JPG',
     '2022-06-18 Microsoft SVC': 'IMG_E4772.JPG',
     '2022-08-19 Welcome Back Dance': 'IMG_E5424.JPG',
-    '2022-08-27@10-16 Floats \'23': 'IMG_E6047.JPG',
+    '2022-08-27@10-16 Floats \'23': 'IMG_E6038.JPG',
     '2022-09-15@16 Fall Club Fair': 'IMG_E5732.JPG',
     '2022-09-16@17 GRT Camping Trip': 'IMG_E5823.JPG',
     '2023-03-25@26 GRT Paly scrimmage': 'IMG_E7324.JPG',
     '2023-03-29 GRT Monterey Bay Aquarium': 'IMG_E7482.JPG',
-    '2023-05-30 Senior Picnic': 'IMG_E7906.JPG', // TODO?
+    '2023-05-30 Senior Picnic': 'IMG_E7902.JPG', // TODO?
     '2023-08-03 Liang surprise birthday party': 'IMG_E8325.JPG',
     '2023-08-19 Purdue B-Involved fair': 'IMG_E8435.JPG',
     '2023-09-30@10-01 UIUC': 'IMG_E8746.HEIC',
