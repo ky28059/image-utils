@@ -16,7 +16,7 @@ export default function PhotoAlbum(props: PhotoAlbumProps) {
         >
             <img
                 src={fileToS3Url(props.name, props.thumbnail)}
-                className="h-48 w-full object-cover object-center"
+                className="h-48 w-full object-cover object-[50%_60%]"
                 alt={props.name}
             />
             <div className="absolute bottom-0 inset-x-0 bg-black/65 px-4 py-2">
