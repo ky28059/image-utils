@@ -1,16 +1,14 @@
-'use client'
-
 import Link from 'next/link';
 import { fileToS3Url } from '@/lib/util';
 
 
-type PhotoDirectoryProps = {
+type PhotoListItemProps = {
     name: string,
     size: number,
     thumbnail?: string
 }
 
-export default function PhotoDirectory(props: PhotoDirectoryProps) {
+export default function PhotoListItem(props: PhotoListItemProps) {
     return (
         <Link
             className="flex items-center border border-white/30 hover:border-white/75 transition duration-150 rounded text-left"

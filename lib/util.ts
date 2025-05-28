@@ -22,3 +22,16 @@ export function variants(file: string) {
         edited: `${before}E${after}`
     }
 }
+
+export function parseFolderName(dir: string) {
+    const matches = dir.match(/(\d{4}-\d{2}-\d{2}(?:@[^ ]+)?) (.+)/);
+    if (!matches) return {
+        name: dir,
+        date: null
+    }
+
+    return {
+        name: matches[2],
+        date: matches[1]
+    }
+}

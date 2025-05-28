@@ -7,7 +7,7 @@ import PhotoGrid from '@/app/[id]/PhotoGrid';
 // Utils
 import { thumbnails } from '@/thumbnails';
 import { getAllHostedPhotos } from '@/lib/aws';
-import { fileToS3Url } from '@/lib/util';
+import { fileToS3Url, parseFolderName } from '@/lib/util';
 
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
@@ -60,17 +60,4 @@ export default async function PhotosPage({ params }: { params: Promise<{ id: str
             <PhotoGrid files={files} dir={dir} />
         </main>
     )
-}
-
-function parseFolderName(dir: string) {
-    const matches = dir.match(/(\d{4}-\d{2}-\d{2}(?:@[^ ]+)?) (.+)/);
-    if (!matches) return {
-        name: dir,
-        date: null
-    }
-
-    return {
-        name: matches[2],
-        date: matches[1]
-    }
 }
