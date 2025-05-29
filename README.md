@@ -17,11 +17,11 @@ npm run upload:all
 ```
 to process and optimize all local photos, and
 ```bash
-npm start
+npm run dev
 ```
-to start the photo server.
+to start the photo server locally.
 
-### About this project
+## About this project
 The main idea with this project was to create an image server capable of hosting the many photos I've taken over the
 years. I transfer most of my photos to my computer, where they are sorted by date / event in the following structure:
 ```
@@ -131,3 +131,36 @@ Under **Bucket policy**, add something like
 }
 ```
 to allow read access on all items in the bucket.
+
+## Scripts
+The `scripts` folder contains utility scripts for uploading / optimizing photos for S3. In particular,
+
+#### upload:all
+```bash
+npm run upload:all
+```
+This is the main script that backs up local photos to S3. `upload:all` treats the local photos directory as the SSOT for
+photo information— it will optimize and upload missing photos to S3, and delete photos from S3 that are not present
+locally.
+
+#### upload:single
+```bash
+npm run upload:single [subdir] [file]
+```
+This script optimizes and uploads a single file located at
+```
+{BASE_DIR}/{subdir}/{file}
+```
+useful for testing the full optimization workflow on a file, or for overriding a specific file on S3 (since image files
+being modified locally is an uncommon occurrence, `upload:all` skips re-uploading files that are already present on S3
+for efficiency).
+
+#### upload:only-small
+```bash
+npm run upload:only-small
+```
+This script behaves like `upload:all`, but only uploads the small optimized image to S3, without modifying the raw or
+full-size optimized images.
+
+Use this script when tweaking `optimizeSmallToBuffer()` without changing `optimize()` (e.g. the only files that need to
+be overwritten are the small preview images).
