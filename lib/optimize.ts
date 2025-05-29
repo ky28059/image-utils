@@ -39,7 +39,7 @@ export async function optimizeToBuffer(path: string) {
 export async function optimizeSmallToBuffer(path: string) {
     const sharp = await optimize(path);
     return sharp
-        .resize({ width: 215 * 2, height: 288 * 2, fit: 'cover' })
+        .resize({ width: 215 * 3, height: 288 * 3, fit: 'cover' })
         .toBuffer();
 }
 

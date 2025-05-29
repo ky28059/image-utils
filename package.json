@@ -7,8 +7,8 @@
     "build": "next build",
     "start": "next start",
     "info": "ts-node -P tsconfig.node.json scripts/info.ts",
-    "single": "ts-node -P tsconfig.node.json scripts/optimizeSingle.ts",
-    "all": "set TS_NODE_PROJECT=tsconfig.node.json&& node -r ts-node/register --env-file=.env scripts/uploadAll.ts"
+    "upload:all": "set TS_NODE_PROJECT=tsconfig.node.json&& node -r ts-node/register --env-file=.env scripts/uploadAll.ts",
+    "upload:single": "set TS_NODE_PROJECT=tsconfig.node.json&& node -r ts-node/register --env-file=.env scripts/uploadSingle.ts"
   },
   "author": "ky28059",
   "license": "MIT",

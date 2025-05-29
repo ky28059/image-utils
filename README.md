@@ -13,9 +13,9 @@ npm run info
 ```
 to display parsed information about the photo directory structure,
 ```bash
-npm run all
+npm run upload:all
 ```
-to process and optimize all photos, and
+to process and optimize all local photos, and
 ```bash
 npm start
 ```

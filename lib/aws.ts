@@ -2,7 +2,7 @@ import { _Object, DeleteObjectsCommand, ListObjectsCommand, PutObjectCommand, S3
 import { readFile } from 'node:fs/promises';
 
 // Utils
-import { optimizeToBuffer } from './optimize';
+import { optimizeSmallToBuffer, optimizeToBuffer } from './optimize';
 import { filename } from './util';
 
 // Config
@@ -69,28 +69,43 @@ export async function getAllHostedPhotos() {
     return res;
 }
 
-export async function optimizeAndUploadFile(dir: string, file: string) {
+export async function uploadRaw(dir: string, file: string) {
     const absPath = `${BASE_PATH}/${dir}/${file}`;
 
     const rawBody = await readFile(absPath);
-    const optimizedBody = await optimizeToBuffer(absPath);
+    await s3.send(
+        new PutObjectCommand({
+            Bucket: PHOTOS_BUCKET,
+            Body: rawBody,
+            Key: `${dir}/${file}`
+        })
+    );
+}
 
-    await Promise.all([
-        s3.send(
-            new PutObjectCommand({
-                Bucket: PHOTOS_BUCKET,
-                Body: rawBody,
-                Key: `${dir}/${file}`
-            })
-        ),
-        s3.send(
-            new PutObjectCommand({
-                Bucket: PREVIEW_BUCKET,
-                Body: optimizedBody,
-                Key: `${dir}/${filename(file)}-preview.webp`
-            })
-        )
-    ]);
+export async function uploadOptimized(dir: string, file: string) {
+    const absPath = `${BASE_PATH}/${dir}/${file}`;
+
+    const optimizedBody = await optimizeToBuffer(absPath);
+    await s3.send(
+        new PutObjectCommand({
+            Bucket: PREVIEW_BUCKET,
+            Body: optimizedBody,
+            Key: `${dir}/${filename(file)}-preview.webp`
+        })
+    );
+}
+
+export async function uploadOptimizedSmall(dir: string, file: string) {
+    const absPath = `${BASE_PATH}/${dir}/${file}`;
+
+    const optimizedBody = await optimizeSmallToBuffer(absPath);
+    await s3.send(
+        new PutObjectCommand({
+            Bucket: PREVIEW_BUCKET,
+            Body: optimizedBody,
+            Key: `${dir}/${filename(file)}-preview-small.webp`
+        })
+    );
 }
 
 export async function deleteUploadedFile(dir: string, file: string) {

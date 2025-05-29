@@ -1,5 +1,5 @@
 import { getAllPhotos } from '@/lib/files';
-import { deleteUploadedFile, getAllHostedPhotos, optimizeAndUploadFile } from '@/lib/aws';
+import { deleteUploadedFile, getAllHostedPhotos, uploadOptimized, uploadOptimizedSmall, uploadRaw } from '@/lib/aws';
 
 
 ;(async () => {
@@ -23,7 +23,11 @@ import { deleteUploadedFile, getAllHostedPhotos, optimizeAndUploadFile } from '@
         // Optimize and upload all files that don't already exist on S3
         for (const file of remaining) {
             console.log(`↳ ${file}`);
-            await optimizeAndUploadFile(name, file);
+            await Promise.all([
+                uploadRaw(name, file),
+                uploadOptimized(name, file),
+                uploadOptimizedSmall(name, file)
+            ])
         }
 
         // Delete any previously optimized photos that no longer exist in source
@@ -31,6 +35,7 @@ import { deleteUploadedFile, getAllHostedPhotos, optimizeAndUploadFile } from '@
             existing.delete(file)
         }
 
+        // TODO: batch
         if (existing.size > 0) {
             console.log();
             console.log(`Deleting ${existing.size} outdated photos:`);
