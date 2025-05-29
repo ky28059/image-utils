@@ -2,7 +2,7 @@ import { _Object, DeleteObjectsCommand, ListObjectsCommand, PutObjectCommand, S3
 import { readFile } from 'node:fs/promises';
 
 // Utils
-import { optimize } from './optimize';
+import { optimizeToBuffer } from './optimize';
 import { filename } from './util';
 
 // Config
@@ -73,7 +73,7 @@ export async function optimizeAndUploadFile(dir: string, file: string) {
     const absPath = `${BASE_PATH}/${dir}/${file}`;
 
     const rawBody = await readFile(absPath);
-    const optimizedBody = await optimize(absPath);
+    const optimizedBody = await optimizeToBuffer(absPath);
 
     await Promise.all([
         s3.send(

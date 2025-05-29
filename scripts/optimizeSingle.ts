@@ -1,7 +1,7 @@
-import { optimize } from '@/lib/optimize'
+import { optimizeToFile } from '@/lib/optimize'
 
 
 ;(async () => {
     const file = process.argv[2];
-    await optimize(file);
+    await optimizeToFile(file);
 })()

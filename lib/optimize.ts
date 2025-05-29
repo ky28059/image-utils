@@ -1,9 +1,9 @@
 import { spawn } from 'node:child_process';
 import sharp, { Sharp } from 'sharp';
+import { filename } from '@/lib/util';
 
 
-export async function optimize(path: string, outPath?: string) { // TODO
-    const [, file, ext] = path.match(/(.+?)(\.\w+)/)!;
+async function optimize(path: string) {
     let img: Sharp;
 
     // Convert HEICs to JPGs before sharp. Uses `ImageMagick` instead of native `heic-decode` due to
@@ -19,7 +19,33 @@ export async function optimize(path: string, outPath?: string) { // TODO
         //.jpeg({ mozjpeg: true, quality: 75 })
         .rotate() // https://stackoverflow.com/questions/48716266/sharp-image-library-rotates-image-when-resizing
         .webp({ effort: 4, quality: 75 })
-        .toBuffer()
+}
+
+/**
+ * Optimizes the image at the given path, returning a buffer of new image data.
+ * @param path The image to optimize.
+ * @returns The optimized image data.
+ */
+export async function optimizeToBuffer(path: string) {
+    const sharp = await optimize(path);
+    return sharp.toBuffer();
+}
+
+/**
+ * Optimizes and reduces the size of the image at the given path, returning a buffer of new image data.
+ * @param path The image to optimize.
+ * @returns The optimized (and compressed) image data.
+ */
+export async function optimizeSmallToBuffer(path: string) {
+    const sharp = await optimize(path);
+    return sharp
+        .resize({ width: 215 * 2, height: 288 * 2, fit: 'cover' })
+        .toBuffer();
+}
+
+export async function optimizeToFile(path: string, outPath?: string) {
+    const sharp = await optimize(path);
+    return sharp.toFile(outPath ?? `${filename(path)}.webp`);
 }
 
 function streamJPGFromImgMagick(path: string): Promise<Buffer> {
