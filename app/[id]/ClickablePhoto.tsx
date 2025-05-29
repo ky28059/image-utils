@@ -1,4 +1,4 @@
-import { fileToS3Url } from '@/lib/util';
+import { fileToS3SmallUrl } from '@/lib/util';
 
 
 type ClickablePhotoProps = {
@@ -9,7 +9,7 @@ type ClickablePhotoProps = {
 export default function ClickablePhoto(props: ClickablePhotoProps) {
     return (
         <img
-            src={fileToS3Url(props.dir, props.file)}
+            src={fileToS3SmallUrl(props.dir, props.file)}
             className="h-72 object-cover object-center cursor-pointer"
             loading="lazy"
             alt={props.file}

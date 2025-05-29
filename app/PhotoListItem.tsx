@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { fileToS3Url } from '@/lib/util';
+import { fileToS3SmallUrl } from '@/lib/util';
 
 
 type PhotoListItemProps = {
@@ -16,7 +16,7 @@ export default function PhotoListItem(props: PhotoListItemProps) {
         >
             {props.thumbnail ? (
                 <img
-                    src={fileToS3Url(props.name, props.thumbnail)}
+                    src={fileToS3SmallUrl(props.name, props.thumbnail)}
                     className="h-[4.5rem] w-32 object-cover object-center rounded-l"
                     alt={props.name}
                 />
