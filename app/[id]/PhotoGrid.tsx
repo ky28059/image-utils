@@ -37,7 +37,7 @@ export default function PhotoGrid(props: PhotoGridProps) {
     useHotkeys('right', incSelected, []);
 
     return (
-        <div className="grid grid-cols-[repeat(auto-fill,_minmax(200px,_1fr))] gap-1.5 mb-6 mt-8">
+        <div className="grid grid-cols-4 sm:grid-cols-[repeat(auto-fill,_minmax(200px,_1fr))] gap-0.5 sm:gap-1.5 mt-8 -mx-[1.875rem] sm:mx-0">
             {props.files.sort((a, b) => variants(a).edited.localeCompare(variants(b).edited)).map((f, i) => (
                 <ClickablePhoto
                     dir={props.dir}

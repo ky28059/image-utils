@@ -10,7 +10,7 @@ export default function ClickablePhoto(props: ClickablePhotoProps) {
     return (
         <img
             src={fileToS3SmallUrl(props.dir, props.file)}
-            className="w-full h-72 object-cover object-center cursor-pointer"
+            className="w-full aspect-4/3 object-cover object-center cursor-pointer"
             loading="lazy"
             alt={props.file}
             onClick={() => props.openModal()}

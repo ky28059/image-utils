@@ -40,7 +40,7 @@ export default async function PhotosPage({ params }: { params: Promise<{ id: str
     const { date, name } = parseFolderName(dir);
 
     return (
-        <main className="container pt-20 pb-24">
+        <main className="container pt-8 sm:pt-20 pb-1 sm:pb-24">
             <Link href="/" className="text-secondary text-sm mb-10 -ml-5 block w-max hover:underline">
                 ← Back to home
             </Link>
