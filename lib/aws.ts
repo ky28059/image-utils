@@ -108,19 +108,9 @@ export async function uploadOptimizedSmall(dir: string, file: string) {
     );
 }
 
-export async function deleteUploadedFile(dir: string, file: string) {
+export async function deleteUploadedFiles(dir: string, files: string[]) {
     await Promise.all([
-        s3.send(
-            new DeleteObjectsCommand({
-                Bucket: PHOTOS_BUCKET,
-                Delete: { Objects: [{ Key: `${dir}/${file}` }] }
-            })
-        ),
-        s3.send(
-            new DeleteObjectsCommand({
-                Bucket: PREVIEW_BUCKET,
-                Delete: { Objects: [{ Key: `${dir}/${filename(file)}-preview.webp` }] }
-            })
-        )
+        deleteKeysInBucket(PHOTOS_BUCKET, files.map((f) => `${dir}/${f}`)),
+        deleteKeysInBucket(PREVIEW_BUCKET, files.map((f) => `${dir}/${filename(f)}-preview.webp`))
     ]);
 }

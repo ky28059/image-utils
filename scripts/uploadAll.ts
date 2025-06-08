@@ -1,5 +1,5 @@
 import { getAllPhotos } from '@/lib/files';
-import { deleteUploadedFile, getAllHostedPhotos, uploadOptimized, uploadOptimizedSmall, uploadRaw } from '@/lib/aws';
+import { deleteUploadedFiles, getAllHostedPhotos, uploadOptimized, uploadOptimizedSmall, uploadRaw } from '@/lib/aws';
 
 
 ;(async () => {
@@ -35,15 +35,11 @@ import { deleteUploadedFile, getAllHostedPhotos, uploadOptimized, uploadOptimize
             existing.delete(file)
         }
 
-        // TODO: batch
         if (existing.size > 0) {
             console.log();
-            console.log(`Deleting ${existing.size} outdated photos:`);
+            console.log(`Deleting ${existing.size} outdated photos.`);
 
-            for (const file of existing) {
-                console.log(`↳ ${file}`);
-                await deleteUploadedFile(name, file);
-            }
+            await deleteUploadedFiles(name, [...existing]);
         }
 
         console.log();
