@@ -6,6 +6,8 @@ import { deleteUploadedFiles, getAllHostedPhotos, uploadOptimized, uploadOptimiz
     const dirs = await getAllPhotos();
     const hosted = await getAllHostedPhotos();
 
+    const remainingDirs = new Set(Object.keys(hosted));
+
     const force = process.argv[2] === '--force'; // TODO: use argparse?
 
     for (const { name, files } of dirs) {
@@ -42,6 +44,18 @@ import { deleteUploadedFiles, getAllHostedPhotos, uploadOptimized, uploadOptimiz
             await deleteUploadedFiles(name, [...existing]);
         }
 
+        remainingDirs.delete(name);
+        console.log();
+    }
+
+    // If there are folders on AWS that are not on local
+    if (remainingDirs.size > 0) {
+        console.log(`Deleting ${remainingDirs.size} outdated directories.`);
+
+        for (const dir of remainingDirs) {
+            console.log(`↳ ${dir}`);
+            await deleteUploadedFiles(dir, hosted[dir]); // TODO?
+        }
         console.log();
     }
 })()
