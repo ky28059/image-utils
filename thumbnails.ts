@@ -1,7 +1,7 @@
 // TODO
 export const thumbnails: Record<string, string> = {
     '2018-03-24 San Francisco': 'P107E0019.jpg',
-    '2018-12-27 [...] Beach': 'P1080362.JPG',
+    '2018-12-27 [...] Beach': 'P108E0362.JPG',
     '2019-06-01@24 China': 'IMG_E0548.JPG',
     '2019-07-04 Shark Fin Cove': 'IMG_E0706.JPG',
     '2020-01-25 San Francisco': 'IMG_E1439.JPG',
@@ -17,16 +17,20 @@ export const thumbnails: Record<string, string> = {
     '2023-03-25@26 GRT Paly scrimmage': 'IMG_E7324.JPG',
     '2023-03-29 GRT Monterey Bay Aquarium': 'IMG_E7482.JPG',
     '2023-05-30 Senior Picnic': 'IMG_E7902.JPG', // TODO?
-    '2023-08-03 Liang surprise birthday party': 'IMG_E8325.JPG',
-    '2023-08-19 Purdue B-Involved fair': 'IMG_E8435.JPG',
+    '2023-06-19 San Francisco': 'IMG_E8183.JPG',
+    // '2023-08-03 Liang surprise birthday party': 'IMG_E8325.JPG',
+    '2023-08-19 Purdue B-Involved fair': 'IMG_E8439.JPG',
     '2023-09-30@10-01 UIUC': 'IMG_E8746.HEIC',
-    '2023-11-22@26 New York': 'IMG_E9239.HEIC',
+    '2023-11-22@26 New York': 'IMG_E9190.HEIC',
+    '2023-12-27 Google Cloud Sunnyvale Campus': 'IMG_E9493.HEIC',
+    '2024-03-15 Google Cloud Sunnyvale Campus 2': 'IMG_E9873.HEIC',
     '2024-04-08 Eclipse, Indianapolis': 'IMG_E0099.HEIC',
     '2024-04-25@27 eCTF award ceremony': 'IMG_E0278.HEIC', // TODO?
     '2024-05-05 Stanford walk': 'IMG_E0670.HEIC',
     '2024-05-14@18 Tahoe': 'IMG_E0953.HEIC',
     '2024-05-22 Gunn cranes': 'IMG_E1170.HEIC',
     '2024-05-24@27 Santa Cruz': 'IMG_E1447.HEIC',
+    '2024-05-30 2024 graduation': 'IMG_E1582.HEIC',
     '2024-06-11@08-06 Boston, MIT Beaverworks': 'IMG_E2551.HEIC',
     '2024-08-11 Mission Peak': 'IMG_E2835.HEIC',
     '2024-09-01 Lafayette, Wabash Landing': 'IMG_E2959.HEIC',
