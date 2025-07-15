@@ -44,6 +44,8 @@ export const thumbnails: Record<string, string> = {
     'Misc': 'IMG_E7198.JPG',
     'Art': 'IMG_E0160.HEIC',
     'Purdue': 'IMG_E3044.HEIC',
-    'Gunn': 'IMG_E7247.JPG',
-    'Duck photos': 'DSC02129.JPG'
+    'Gunn': 'IMG_E7843.JPG', // IMG_E7247.JPG, IMG_E7619.JPG
+    'Duck photos': 'DSC02129.JPG',
+    'GRT 2021-2022': 'IMG_3825.JPG',
+    'GRT 2022-2023': 'IMG_E7716.JPG' // IMG_E7716, IMG_6678.JPG
 }
