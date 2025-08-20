@@ -10,27 +10,44 @@ import { getAllHostedPhotos } from '@/lib/aws';
 import { fileToS3Url, parseFolderName } from '@/lib/util';
 
 
-export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
+type AlbumPageParams = {
+    params: Promise<{ id: string }>,
+    searchParams: Promise<{ img?: string }>,
+}
+
+export async function generateMetadata({ params, searchParams }: AlbumPageParams): Promise<Metadata> {
     const dir = decodeURIComponent((await params).id);
+    const image = (await searchParams).img;
+
+    const { date, name } = parseFolderName(dir);
 
     // TODO:
     const dirs = await getAllHostedPhotos();
     const files = dirs[dir];
 
-    const { date, name } = parseFolderName(dir);
+    if (image) {
+        return {
+            title: `${image} • ${name}`,
+            description: `${files.length} photos${date ? ` • ${date}` : ''}`,
+            openGraph: {
+                images: fileToS3Url(dir, image)
+            }
+        }
+    }
 
     return {
         title: name,
         description: `${files.length} photos${date ? ` • ${date}` : ''}`,
         openGraph: {
-            images: thumbnails[dir]
+            images: image
+                ? fileToS3Url(dir, image) : thumbnails[dir]
                 ? fileToS3Url(dir, thumbnails[dir])
                 : undefined
         }
     }
 }
 
-export default async function PhotosPage({ params }: { params: Promise<{ id: string }> }) {
+export default async function PhotosPage({ params }: AlbumPageParams) {
     const dir = decodeURIComponent((await params).id);
 
     // TODO:
