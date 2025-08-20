@@ -7,7 +7,7 @@ import PhotoGrid from '@/app/[id]/PhotoGrid';
 // Utils
 import { thumbnails } from '@/thumbnails';
 import { getAllHostedPhotos } from '@/lib/aws';
-import { fileToS3Url, parseFolderName } from '@/lib/util';
+import { fileToS3Url, parseFolderName, variants } from '@/lib/util';
 
 
 type AlbumPageParams = {
@@ -25,7 +25,7 @@ export async function generateMetadata({ params, searchParams }: AlbumPageParams
     const dirs = await getAllHostedPhotos();
     const files = dirs[dir];
 
-    if (image) {
+    if (image && files.includes(image)) {
         return {
             title: `${image} • ${name}`,
             description: `${files.length} photos${date ? ` • ${date}` : ''}`,
@@ -47,14 +47,19 @@ export async function generateMetadata({ params, searchParams }: AlbumPageParams
     }
 }
 
-export default async function PhotosPage({ params }: AlbumPageParams) {
+export default async function PhotosPage({ params, searchParams }: AlbumPageParams) {
     const dir = decodeURIComponent((await params).id);
+    const image = (await searchParams).img;
 
     // TODO:
     const dirs = await getAllHostedPhotos();
-    const files = dirs[dir];
+    const files = dirs[dir].sort((a, b) => variants(a).edited.localeCompare(variants(b).edited));
 
     const { date, name } = parseFolderName(dir);
+
+    // If the `img` search param resolves to a real photo within this album, start with that
+    // photo selected.
+    const imgIndex = files.findIndex((s) => s === image);
 
     return (
         <main className="container pt-8 sm:pt-20 pb-1 sm:pb-24">
@@ -74,7 +79,11 @@ export default async function PhotosPage({ params }: AlbumPageParams) {
                 {files.length} photos
             </p>
 
-            <PhotoGrid files={files} dir={dir} />
+            <PhotoGrid
+                files={files}
+                dir={dir}
+                initialSelected={imgIndex !== -1 ? imgIndex : undefined}
+            />
         </main>
     )
 }

@@ -8,16 +8,17 @@ import ClickablePhoto from '@/app/[id]/ClickablePhoto';
 import CenteredModal from '@/components/CenteredModal';
 
 // Utils
-import { fileToS3Url, variants } from '@/lib/util';
+import { fileToS3Url } from '@/lib/util';
 
 
 type PhotoGridProps = {
     files: string[],
     dir: string,
+    initialSelected?: number,
 }
 export default function PhotoGrid(props: PhotoGridProps) {
-    const [open, setOpen] = useState(false);
-    const [selected, setSelected] = useState(0);
+    const [open, setOpen] = useState(props.initialSelected !== undefined);
+    const [selected, setSelected] = useState(props.initialSelected ?? 0);
 
     function openModalToFile(id: number) {
         setSelected(id);
@@ -38,7 +39,7 @@ export default function PhotoGrid(props: PhotoGridProps) {
 
     return (
         <div className="grid grid-cols-4 sm:grid-cols-[repeat(auto-fill,_minmax(200px,_1fr))] gap-0.5 sm:gap-1.5 mt-8 -mx-[1.875rem] sm:mx-0">
-            {props.files.sort((a, b) => variants(a).edited.localeCompare(variants(b).edited)).map((f, i) => (
+            {props.files.map((f, i) => (
                 <ClickablePhoto
                     dir={props.dir}
                     file={f}
