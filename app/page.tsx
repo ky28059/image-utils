@@ -22,7 +22,8 @@ export default async function Photos() {
                 Photos
             </h1>
             <p className="text-secondary text-sm mb-6">
-                {Object.keys(dirs).length} albums
+                {Object.keys(dirs).length} albums,{' '}
+                {Object.values(dirs).reduce((s, e) => s + e.length, 0)} photos
             </p>
 
             <PhotosAlbumsView dirs={dirs} />
