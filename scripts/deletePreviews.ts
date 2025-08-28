@@ -1,10 +1,10 @@
-import { deleteKeysInBucket, getAllContentsInBucket } from '@/lib/aws';
+import { deleteKeysInBucket, getBucketContents } from '@/lib/aws';
 import { filename } from '@/lib/util';
 import { PHOTOS_BUCKET } from '@/config';
 
 
 ;(async () => {
-    const content = await getAllContentsInBucket(PHOTOS_BUCKET);
+    const content = await getBucketContents(PHOTOS_BUCKET);
 
     const keys = content
         .map((o) => o.Key)

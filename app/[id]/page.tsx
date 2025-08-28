@@ -6,7 +6,7 @@ import PhotoGrid from '@/app/[id]/PhotoGrid';
 
 // Utils
 import { thumbnails } from '@/thumbnails';
-import { getAllHostedPhotos } from '@/lib/aws';
+import { getHostedDirectory } from '@/lib/aws';
 import { fileToS3Url, parseFolderName, variants } from '@/lib/util';
 
 
@@ -21,10 +21,10 @@ export async function generateMetadata({ params, searchParams }: AlbumPageParams
 
     const { date, name } = parseFolderName(dir);
 
-    // TODO:
-    const dirs = await getAllHostedPhotos();
-    const files = dirs[dir];
+    // TODO: 404
+    const files = await getHostedDirectory(dir);
 
+    // If a valid image is referenced by the `img` search param
     if (image && files.includes(image)) {
         return {
             title: `${image} • ${name}`,
@@ -39,8 +39,7 @@ export async function generateMetadata({ params, searchParams }: AlbumPageParams
         title: name,
         description: `${files.length} photos${date ? ` • ${date}` : ''}`,
         openGraph: {
-            images: image
-                ? fileToS3Url(dir, image) : thumbnails[dir]
+            images: thumbnails[dir]
                 ? fileToS3Url(dir, thumbnails[dir])
                 : undefined
         }
@@ -51,9 +50,9 @@ export default async function PhotosPage({ params, searchParams }: AlbumPagePara
     const dir = decodeURIComponent((await params).id);
     const image = (await searchParams).img;
 
-    // TODO:
-    const dirs = await getAllHostedPhotos();
-    const files = dirs[dir].sort((a, b) => variants(a).edited.localeCompare(variants(b).edited));
+    // TODO: 404
+    const files = (await getHostedDirectory(dir))
+        .sort((a, b) => variants(a).edited.localeCompare(variants(b).edited));
 
     const { date, name } = parseFolderName(dir);
 

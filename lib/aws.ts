@@ -1,4 +1,4 @@
-import { _Object, DeleteObjectsCommand, ListObjectsCommand, PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
+import { _Object, DeleteObjectsCommand, ListObjectsV2Command, PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
 import { readFile } from 'node:fs/promises';
 
 // Utils
@@ -20,18 +20,26 @@ const s3 = new S3Client({
 /**
  * Iteratively fetches all contents of the given bucket.
  * @param bucket The bucket to list.
+ * @param prefix The prefix to list; defaults to the entire bucket.
  * @returns A concatenated list of all contents in the bucket.
  */
-export async function getAllContentsInBucket(bucket: string) {
-    const res: _Object[] = [];
+export async function getBucketContents(bucket: string, prefix?: string) {
+    const ret: _Object[] = [];
+    let token = undefined;
 
     while (true) {
-        const { Contents } = await s3.send(new ListObjectsCommand({
+        // TODO?
+        // @ts-ignore
+        const { Contents, IsTruncated, NextContinuationToken } = await s3.send(new ListObjectsV2Command({
             Bucket: bucket,
-            Marker: res.at(-1)?.Key
+            Prefix: prefix,
+            ContinuationToken: token
         }));
-        if (!Contents) return res;
-        res.push(...Contents);
+        if (!Contents) return ret;
+        ret.push(...Contents);
+
+        if (!IsTruncated) return ret;
+        token = NextContinuationToken;
     }
 }
 
@@ -54,19 +62,34 @@ export async function deleteKeysInBucket(bucket: string, keys: string[]) {
  * @returns An object of type `{ [dir: string]: string[] }` mapping subdirectories to photos.
  */
 export async function getAllHostedPhotos() {
-    const res: { [dir: string]: string[] } = {};
-    const contents = await getAllContentsInBucket(PHOTOS_BUCKET);
+    const ret: { [dir: string]: string[] } = {};
+    const contents = await getBucketContents(PHOTOS_BUCKET);
 
     for (const { Key } of contents) {
         if (!Key) continue;
 
         const [dir, name] = Key.split('/');
-        if (!res[dir]) res[dir] = [];
+        if (!ret[dir]) ret[dir] = [];
 
-        res[dir].push(name);
+        ret[dir].push(name);
     }
 
-    return res;
+    return ret;
+}
+
+/**
+ * Fetches the S3 photos in a given directory. Equivalent to doing `(await getAllHostedPhotos())[dir]`,
+ * but is more efficient.
+ *
+ * @param dir The directory to fetch.
+ * @returns A `string[]` of photos.
+ */
+export async function getHostedDirectory(dir: string) {
+    const contents = await getBucketContents(PHOTOS_BUCKET, dir);
+
+    return contents
+        .filter(f => f.Key)
+        .map(f => f.Key!.split('/')[1]);
 }
 
 export async function uploadRaw(dir: string, file: string) {
