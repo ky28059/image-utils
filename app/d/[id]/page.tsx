@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 import Link from 'next/link';
 
 // Components
@@ -21,8 +22,8 @@ export async function generateMetadata({ params, searchParams }: AlbumPageParams
 
     const { date, name } = parseFolderName(dir);
 
-    // TODO: 404
     const files = await getHostedDirectory(dir);
+    if (!files.length) return notFound();
 
     // If a valid image is referenced by the `img` search param
     if (image && files.includes(image)) {
@@ -50,9 +51,10 @@ export default async function PhotosPage({ params, searchParams }: AlbumPagePara
     const dir = decodeURIComponent((await params).id);
     const image = (await searchParams).img;
 
-    // TODO: 404
     const files = (await getHostedDirectory(dir))
         .sort((a, b) => variants(a).edited.localeCompare(variants(b).edited));
+
+    if (!files.length) return null;
 
     const { date, name } = parseFolderName(dir);
 
