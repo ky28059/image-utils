@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useHotkeys } from 'react-hotkeys-hook';
 
 // Components
-import ClickablePhoto from '@/app/[id]/ClickablePhoto';
+import ClickablePhoto from '@/app/d/[id]/ClickablePhoto';
 import CenteredModal from '@/components/CenteredModal';
 
 // Utils

@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 // Components
-import PhotoGrid from '@/app/[id]/PhotoGrid';
+import PhotoGrid from '@/app/d/[id]/PhotoGrid';
 
 // Utils
 import { thumbnails } from '@/thumbnails';

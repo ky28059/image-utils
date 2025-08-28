@@ -12,7 +12,7 @@ export default function PhotoAlbum(props: PhotoAlbumProps) {
     return (
         <Link
             className="flex flex-col relative w-80 border border-white/30 hover:border-white/75 transition duration-150 rounded overflow-clip text-left"
-            href={`/${props.name}`}
+            href={`/d/${props.name}`}
         >
             <img
                 src={fileToS3Url(props.name, props.thumbnail)}

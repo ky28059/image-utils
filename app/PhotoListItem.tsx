@@ -12,7 +12,7 @@ export default function PhotoListItem(props: PhotoListItemProps) {
     return (
         <Link
             className="flex items-center border border-white/30 hover:border-white/75 transition duration-150 rounded text-left"
-            href={`/${props.name}`}
+            href={`/d/${props.name}`}
         >
             {props.thumbnail ? (
                 <img
