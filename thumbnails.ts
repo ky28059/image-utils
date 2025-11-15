@@ -43,8 +43,11 @@ export const thumbnails: Record<string, string> = {
     '2025-05-26 San Francisco Chinatown': 'IMG_E5941.HEIC',
     '2025-07-09@12 Dice Finals, NYC': 'IMG_E6340.HEIC', // IMG_6389.HEIC, IMG_E6445.HEIC
     '2025-08-17 Redwood City': 'IMG_E6716.HEIC',
+    '2025-11-12 Celery Bog': 'IMG_E7358.HEIC',
+    '2025-04-24@26 eCTF awards ceremony \'25': 'IMG_E5370.HEIC',
     'Misc': 'IMG_E7198.JPG',
     'Art': 'IMG_E0160.HEIC',
+    'Cooking': 'IMG_E6166.HEIC',
     'Purdue': 'IMG_E3044.HEIC',
     'Gunn': 'IMG_E7843.JPG', // IMG_E7247.JPG, IMG_E7619.JPG
     'Duck photos': 'DSC02129.JPG',
