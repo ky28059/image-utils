@@ -1,6 +1,30 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --color-primary: var(--primary);
+    --color-secondary: var(--secondary);
+    --color-tertiary: var(--tertiary);
+
+    --color-midnight: #1b1b1b;
+    --color-dark: #26252c;
+    --color-light: #fff8e8;
+    --color-grapefruit: #ff6347;
+    --color-pomegranate: #e03c31;
+
+    --animate-loop-scroll: loop-scroll 40s linear infinite;
+
+    @keyframes loop-scroll {
+        0% { transform: translateX(0) }
+        100% { transform: translateX(calc(-100% / 3)) }
+    }
+}
+
+@utility container {
+    @apply px-8 sm:px-12 lg:px-16 xl:px-20 2xl:px-32;
+    margin: 0 auto;
+}
 
 @layer base {
     :root {
