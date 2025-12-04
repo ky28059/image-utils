@@ -28,16 +28,16 @@
 
 @layer base {
     :root {
-        --primary: 117 117 117;
-        --secondary: 117 117 117;
-        --tertiary: 209 213 219;
+        --primary: #656565;
+        --secondary: #757575;
+        --tertiary: #d1d5db;
     }
 
     :root.dark {
         color-scheme: dark;
 
-        --primary: 186 186 186;
-        --secondary: 124 124 124;
-        --tertiary: 64 64 64;
+        --primary: #BABABA;
+        --secondary: #777777;
+        --tertiary: #404040;
     }
 }

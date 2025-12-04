@@ -17,11 +17,11 @@ export default function PhotoListItem(props: PhotoListItemProps) {
             {props.thumbnail ? (
                 <img
                     src={fileToS3SmallUrl(props.name, props.thumbnail)}
-                    className="h-[4.5rem] w-32 object-cover object-center rounded-l"
+                    className="h-18 w-32 object-cover object-center rounded-l"
                     alt={props.name}
                 />
             ) : (
-                <div className="h-[4.5rem] w-32 bg-black/20" />
+                <div className="h-18 w-32 bg-black/20" />
             )}
             <div className="pl-6 pr-2 px-4">
                 <h3 className="font-medium">{props.name}</h3>

@@ -14,7 +14,7 @@ export default function PhotoAlbumRow(props: PhotoAlbumRowProps) {
 
     return (
         <div className="relative flex flex-wrap gap-6">
-            <p className="absolute -left-[4.5rem] text-secondary text-sm">
+            <p className="absolute -left-18 text-secondary text-sm">
                 {props.label}
             </p>
 
