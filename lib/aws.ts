@@ -78,8 +78,7 @@ export async function getAllHostedPhotos() {
 }
 
 /**
- * Fetches the S3 photos in a given directory. Equivalent to doing `(await getAllHostedPhotos())[dir]`,
- * but is more efficient.
+ * Fetches the S3 photos in a given directory. More efficient version of `(await getAllHostedPhotos())[dir]`.
  *
  * @param dir The directory to fetch.
  * @returns A `string[]` of photos.

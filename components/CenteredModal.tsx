@@ -19,7 +19,7 @@ export default function CenteredModal(props: CenteredModalProps) {
         >
             <DialogBackdrop
                 transition
-                className="fixed inset-0 bg-black/80 transition duration-300 data-closed:duration-200 ease-out data-closed:ease-in data-closed:opacity-0"
+                className="fixed inset-0 bg-black/85 transition duration-300 data-closed:duration-200 ease-out data-closed:ease-in data-closed:opacity-0"
             />
 
             <DialogPanel

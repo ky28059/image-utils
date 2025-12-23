@@ -49,19 +49,19 @@ export default function PhotoGrid(props: PhotoGridProps) {
             ))}
 
             <CenteredModal
-                className="relative flex flex-col max-w-[70%]"
+                className="relative flex flex-col max-w-[80%]"
                 isOpen={open}
                 setIsOpen={setOpen}
             >
                 <button
-                    className="fixed left-4 inset-y-0 text-secondary hover:text-white transition duration-200"
+                    className="cursor-pointer fixed left-0 pl-4 text-left inset-y-0 w-[30vw] text-secondary hover:text-white transition duration-200"
                     onClick={decSelected}
                 >
                     {'<'}
                 </button>
 
                 <button
-                    className="fixed right-4 inset-y-0 text-secondary hover:text-white transition duration-200"
+                    className="cursor-pointer fixed right-0 pr-4 text-right inset-y-0 w-[30vw] text-secondary hover:text-white transition duration-200"
                     onClick={incSelected}
                 >
                     {'>'}
@@ -69,7 +69,7 @@ export default function PhotoGrid(props: PhotoGridProps) {
 
                 <img
                     src={fileToS3Url(props.dir, props.files[selected])}
-                    className="max-h-[80vh]"
+                    className="max-h-[90vh]"
                     alt={props.files[selected]}
                 />
                 <p className="text-sm mt-1.5">{props.files[selected]}</p>
