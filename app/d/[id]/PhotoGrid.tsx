@@ -64,14 +64,14 @@ export default function PhotoGrid(props: PhotoGridProps) {
                 </button>
 
                 <button
-                    className="flex items-center cursor-pointer fixed left-0 pl-6 inset-y-0 w-[30vw] text-secondary hover:text-white transition duration-200"
+                    className="flex items-center cursor-pointer fixed left-0 pl-6 inset-y-0 w-[30vw] text-secondary hover:text-white transition duration-200 focus:outline-none"
                     onClick={decSelected}
                 >
                     <FaChevronLeft />
                 </button>
 
                 <button
-                    className="flex items-center justify-end cursor-pointer fixed right-0 pr-6 inset-y-0 w-[30vw] text-secondary hover:text-white transition duration-200"
+                    className="flex items-center justify-end cursor-pointer fixed right-0 pr-6 inset-y-0 w-[30vw] text-secondary hover:text-white transition duration-200 focus:outline-none"
                     onClick={incSelected}
                 >
                     <FaChevronRight />

@@ -39,12 +39,13 @@ export const thumbnails: Record<string, string> = {
     '2025-04-10@14 Pwnme, Paris': 'IMG_E5008.HEIC',
     '2025-01-04@07 Shanghai': 'IMG_E4106.HEIC',
     '2025-01-07@10 Tokyo': 'IMG_E4174.HEIC',
+    '2025-04-24@26 eCTF awards ceremony \'25': 'IMG_E5370.HEIC',
     '2025-05-20@23 Carlsbad, UCSD, La Jolla': 'IMG_E5688.HEIC',
     '2025-05-26 San Francisco Chinatown': 'IMG_E5941.HEIC',
     '2025-07-09@12 Dice Finals, NYC': 'IMG_E6340.HEIC', // IMG_6389.HEIC, IMG_E6445.HEIC
-    '2025-08-17 Redwood City': 'IMG_E6716.HEIC',
+    '2025-08-17 Redwood City': 'IMG_E6723.HEIC', // IMG_E6716.HEIC
     '2025-11-12 Celery Bog': 'IMG_E7358.HEIC',
-    '2025-04-24@26 eCTF awards ceremony \'25': 'IMG_E5370.HEIC',
+    '2025-12-08@10 Epic, Madison': 'IMG_E7561.HEIC', // IMG_E7740.HEIC
     'Misc': 'IMG_E7198.JPG',
     'Art': 'IMG_E0160.HEIC',
     'Cooking': 'IMG_E6166.HEIC',
