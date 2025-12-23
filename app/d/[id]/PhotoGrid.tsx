@@ -10,6 +10,9 @@ import CenteredModal from '@/components/CenteredModal';
 // Utils
 import { fileToS3Url } from '@/lib/util';
 
+// Icons
+import { FaArrowLeft, FaChevronLeft, FaChevronRight } from 'react-icons/fa6';
+
 
 type PhotoGridProps = {
     files: string[],
@@ -54,17 +57,24 @@ export default function PhotoGrid(props: PhotoGridProps) {
                 setIsOpen={setOpen}
             >
                 <button
-                    className="cursor-pointer fixed left-0 pl-4 text-left inset-y-0 w-[30vw] text-secondary hover:text-white transition duration-200"
-                    onClick={decSelected}
+                    className="cursor-pointer fixed left-4 top-4 z-10 p-2 rounded-full hover:bg-white/10 transition duration-100"
+                    onClick={() => setOpen(false)}
                 >
-                    {'<'}
+                    <FaArrowLeft />
                 </button>
 
                 <button
-                    className="cursor-pointer fixed right-0 pr-4 text-right inset-y-0 w-[30vw] text-secondary hover:text-white transition duration-200"
+                    className="flex items-center cursor-pointer fixed left-0 pl-6 inset-y-0 w-[30vw] text-secondary hover:text-white transition duration-200"
+                    onClick={decSelected}
+                >
+                    <FaChevronLeft />
+                </button>
+
+                <button
+                    className="flex items-center justify-end cursor-pointer fixed right-0 pr-6 inset-y-0 w-[30vw] text-secondary hover:text-white transition duration-200"
                     onClick={incSelected}
                 >
-                    {'>'}
+                    <FaChevronRight />
                 </button>
 
                 <img
