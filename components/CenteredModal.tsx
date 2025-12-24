@@ -3,19 +3,19 @@ import { Dialog, DialogBackdrop, DialogPanel } from '@headlessui/react';
 
 
 type CenteredModalProps = {
-    isOpen: boolean,
-    setIsOpen: (isOpen: boolean) => void,
+    open: boolean,
+    onClose: () => void,
     className: string,
     children: ReactNode
 }
 export default function CenteredModal(props: CenteredModalProps) {
-    const { isOpen, setIsOpen, className, children } = props;
+    const { open, onClose, className, children } = props;
 
     return (
         <Dialog
             className="fixed z-40 inset-0 flex items-center justify-center"
-            open={isOpen}
-            onClose={() => setIsOpen(false)}
+            open={open}
+            onClose={onClose}
         >
             <DialogBackdrop
                 transition

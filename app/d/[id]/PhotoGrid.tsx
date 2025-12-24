@@ -23,22 +23,44 @@ export default function PhotoGrid(props: PhotoGridProps) {
     const [open, setOpen] = useState(props.initialSelected !== undefined);
     const [selected, setSelected] = useState(props.initialSelected ?? 0);
 
+    function updateURLQuery(id: number) {
+        window.history.replaceState(
+            null,
+            '',
+            `${window.location.origin}${window.location.pathname}?img=${props.files[id]}`
+        );
+    }
+
     function openModalToFile(id: number) {
         setSelected(id);
         setOpen(true);
+        updateURLQuery(id);
+    }
+
+    function closeModal() {
+        setOpen(false);
+        window.history.replaceState(
+            null,
+            '',
+            `${window.location.origin}${window.location.pathname}`
+        );
     }
 
     function decSelected() {
-        setSelected((s) => Math.max(s - 1, 0))
+        const d = Math.max(selected - 1, 0);
+        setSelected(d);
+        updateURLQuery(d);
     }
 
     function incSelected() {
-        setSelected((s) => Math.min(s + 1, props.files.length - 1))
+        const i = Math.min(selected + 1, props.files.length - 1);
+        setSelected(i);
+        updateURLQuery(i);
     }
 
     // Decrement and increment image hotkeys
-    useHotkeys('left', decSelected, []);
-    useHotkeys('right', incSelected, []);
+    useHotkeys('left', decSelected, [selected]);
+    useHotkeys('right', incSelected, [selected]);
 
     return (
         <div className="grid grid-cols-4 sm:grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-0.5 sm:gap-1.5 mt-8 -mx-7.5 sm:mx-0">
@@ -53,12 +75,12 @@ export default function PhotoGrid(props: PhotoGridProps) {
 
             <CenteredModal
                 className="relative flex flex-col max-w-[80%]"
-                isOpen={open}
-                setIsOpen={setOpen}
+                open={open}
+                onClose={closeModal}
             >
                 <button
                     className="cursor-pointer fixed left-4 top-4 z-10 p-2 rounded-full hover:bg-white/10 transition duration-100"
-                    onClick={() => setOpen(false)}
+                    onClick={closeModal}
                 >
                     <FaArrowLeft />
                 </button>
