@@ -1,4 +1,4 @@
-import { PREVIEW_BUCKET } from '@/config';
+import { PHOTOS_BUCKET, PREVIEW_BUCKET } from '@/config';
 
 
 export function filename(file: string) {
@@ -15,6 +15,12 @@ export function fileToS3SmallUrl(dir: string, file: string) {
     // AWS uses regular URI encoding with `+` instead of space
     const encoded = encodeURI(dir.replaceAll(' ', '+'));
     return `https://${PREVIEW_BUCKET}.s3.us-east-1.amazonaws.com/${encoded}/${filename(file)}-preview-small.webp`
+}
+
+export function fileToS3OriginalUrl(dir: string, file: string) {
+    // AWS uses regular URI encoding with `+` instead of space
+    const encoded = encodeURI(dir.replaceAll(' ', '+'));
+    return `https://${PHOTOS_BUCKET}.s3.us-east-1.amazonaws.com/${encoded}/${file}`
 }
 
 // TODO: abstraction?

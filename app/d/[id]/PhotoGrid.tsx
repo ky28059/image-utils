@@ -8,10 +8,12 @@ import ClickablePhoto from '@/app/d/[id]/ClickablePhoto';
 import CenteredModal from '@/components/CenteredModal';
 
 // Utils
-import { fileToS3Url } from '@/lib/util';
+import { fileToS3OriginalUrl, fileToS3Url } from '@/lib/util';
 
 // Icons
 import { FaArrowLeft, FaChevronLeft, FaChevronRight } from 'react-icons/fa6';
+import { GoShareAndroid } from 'react-icons/go';
+import { MdDownloadForOffline } from 'react-icons/md';
 
 
 type PhotoGridProps = {
@@ -63,7 +65,7 @@ export default function PhotoGrid(props: PhotoGridProps) {
     useHotkeys('right', incSelected, [selected]);
 
     return (
-        <div className="grid grid-cols-4 sm:grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-0.5 sm:gap-1.5 mt-8 -mx-7.5 sm:mx-0">
+        <div className="group grid grid-cols-4 sm:grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-0.5 sm:gap-1.5 mt-8 -mx-7.5 sm:mx-0">
             {props.files.map((f, i) => (
                 <ClickablePhoto
                     dir={props.dir}
@@ -86,14 +88,14 @@ export default function PhotoGrid(props: PhotoGridProps) {
                 </button>
 
                 <button
-                    className="flex items-center cursor-pointer fixed left-0 pl-6 inset-y-0 w-[30vw] text-secondary hover:text-white transition duration-200 focus:outline-none"
+                    className="flex items-center cursor-pointer fixed left-0 pl-6 inset-y-0 w-[30vw] text-transparent hover:text-white transition duration-200 focus:outline-none"
                     onClick={decSelected}
                 >
                     <FaChevronLeft />
                 </button>
 
                 <button
-                    className="flex items-center justify-end cursor-pointer fixed right-0 pr-6 inset-y-0 w-[30vw] text-secondary hover:text-white transition duration-200 focus:outline-none"
+                    className="flex items-center justify-end cursor-pointer fixed right-0 pr-6 inset-y-0 w-[30vw] text-transparent hover:text-white transition duration-200 focus:outline-none"
                     onClick={incSelected}
                 >
                     <FaChevronRight />
@@ -105,6 +107,22 @@ export default function PhotoGrid(props: PhotoGridProps) {
                     alt={props.files[selected]}
                 />
                 <p className="text-sm mt-1.5">{props.files[selected]}</p>
+
+                <div className="absolute top-0 left-full pl-2 flex flex-col text-xl">
+                    <button
+                        className="cursor-pointer text-primary hover:text-white p-2 rounded-full hover:bg-white/10 transition duration-100"
+                        onClick={() => navigator.clipboard.writeText(window.location.href)}
+                    >
+                        <GoShareAndroid />
+                    </button>
+                    <a
+                        download
+                        className="cursor-pointer text-primary hover:text-white p-2 rounded-full hover:bg-white/10 transition duration-100"
+                        href={fileToS3OriginalUrl(props.dir, props.files[selected])}
+                    >
+                        <MdDownloadForOffline />
+                    </a>
+                </div>
             </CenteredModal>
         </div>
     )
