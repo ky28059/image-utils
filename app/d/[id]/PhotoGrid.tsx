@@ -25,7 +25,8 @@ export default function PhotoGrid(props: PhotoGridProps) {
     const [open, setOpen] = useState(props.initialSelected !== undefined);
     const [selected, setSelected] = useState(props.initialSelected ?? 0);
 
-    function updateURLQuery(id: number) {
+    function updateSelected(id: number) {
+        setSelected(id);
         window.history.replaceState(
             null,
             '',
@@ -34,9 +35,8 @@ export default function PhotoGrid(props: PhotoGridProps) {
     }
 
     function openModalToFile(id: number) {
-        setSelected(id);
+        updateSelected(id);
         setOpen(true);
-        updateURLQuery(id);
     }
 
     function closeModal() {
@@ -49,15 +49,11 @@ export default function PhotoGrid(props: PhotoGridProps) {
     }
 
     function decSelected() {
-        const d = Math.max(selected - 1, 0);
-        setSelected(d);
-        updateURLQuery(d);
+        updateSelected(Math.max(selected - 1, 0));
     }
 
     function incSelected() {
-        const i = Math.min(selected + 1, props.files.length - 1);
-        setSelected(i);
-        updateURLQuery(i);
+        updateSelected(Math.min(selected + 1, props.files.length - 1));
     }
 
     // Decrement and increment image hotkeys

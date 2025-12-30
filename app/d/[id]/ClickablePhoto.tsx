@@ -10,7 +10,7 @@ export default function ClickablePhoto(props: ClickablePhotoProps) {
     return (
         <img
             src={fileToS3SmallUrl(props.dir, props.file)}
-            className="w-full aspect-3/4 object-cover object-center cursor-pointer"
+            className="w-full aspect-3/4 object-cover object-center cursor-pointer" // group-hover:opacity-50 hover:opacity-100! transition duration-100
             loading="lazy"
             alt={props.file}
             onClick={() => props.openModal()}
