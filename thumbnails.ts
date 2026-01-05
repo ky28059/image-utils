@@ -47,6 +47,7 @@ export const thumbnails: Record<string, string> = {
     '2025-11-12 Celery Bog': 'IMG_E7358.HEIC',
     '2025-12-08@10 Epic, Madison': 'IMG_E7561.HEIC', // IMG_E7740.HEIC
     '2025-12-28 Palo Alto Baylands': 'IMG_E7890.HEIC', // IMG_E7900.HEIC
+    '2026-01-03 Mission Peak': 'IMG_E8092.HEIC', // IMG_E8055.HEIC, IMG_E8074.HEIC
     'Misc': 'IMG_E7198.JPG',
     'Art': 'IMG_E0160.HEIC',
     'Cooking': 'IMG_E6166.HEIC',
