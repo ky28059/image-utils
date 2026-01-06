@@ -6,13 +6,13 @@ import { useHotkeys } from 'react-hotkeys-hook';
 // Components
 import ClickablePhoto from '@/app/d/[id]/ClickablePhoto';
 import CenteredModal from '@/components/CenteredModal';
+import CopyLinkButton from '@/components/CopyLinkButton';
 
 // Utils
 import { fileToS3OriginalUrl, fileToS3Url } from '@/lib/util';
 
 // Icons
 import { FaArrowLeft, FaChevronLeft, FaChevronRight } from 'react-icons/fa6';
-import { GoShareAndroid } from 'react-icons/go';
 import { MdDownloadForOffline } from 'react-icons/md';
 
 
@@ -61,7 +61,7 @@ export default function PhotoGrid(props: PhotoGridProps) {
     useHotkeys('right', incSelected, [selected]);
 
     return (
-        <div className="group grid grid-cols-4 sm:grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-0.5 sm:gap-1.5 mt-8 -mx-7.5 sm:mx-0">
+        <div className="group grid grid-cols-4 sm:grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-0.5 sm:gap-1.5 mt-6 -mx-7.5 sm:mx-0">
             {props.files.map((f, i) => (
                 <ClickablePhoto
                     dir={props.dir}
@@ -105,12 +105,7 @@ export default function PhotoGrid(props: PhotoGridProps) {
                 <p className="text-sm mt-1.5">{props.files[selected]}</p>
 
                 <div className="absolute top-0 left-full pl-2 flex flex-col text-xl">
-                    <button
-                        className="cursor-pointer text-primary hover:text-white p-2 rounded-full hover:bg-white/10 transition duration-100"
-                        onClick={() => navigator.clipboard.writeText(window.location.href)}
-                    >
-                        <GoShareAndroid />
-                    </button>
+                    <CopyLinkButton />
                     <a
                         download
                         className="cursor-pointer text-primary hover:text-white p-2 rounded-full hover:bg-white/10 transition duration-100"

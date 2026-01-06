@@ -4,11 +4,15 @@ import Link from 'next/link';
 
 // Components
 import PhotoGrid from '@/app/d/[id]/PhotoGrid';
+import CopyLinkButton from '@/components/CopyLinkButton';
 
 // Utils
 import { thumbnails } from '@/thumbnails';
 import { getHostedDirectory } from '@/lib/aws';
 import { fileToS3Url, parseFolderName, variants } from '@/lib/util';
+
+// Icons
+import { MdDownloadForOffline } from 'react-icons/md';
 
 
 type AlbumPageParams = {
@@ -79,6 +83,17 @@ export default async function PhotosPage({ params, searchParams }: AlbumPagePara
             <p className="text-secondary">
                 {files.length} photos
             </p>
+
+            <div className="flex mt-1 -ml-2 text-xl">
+                <a
+                    download
+                    className="cursor-pointer text-primary hover:text-white p-2 rounded-full hover:bg-white/10 transition duration-100"
+                    href={`/zip?dir=${encodeURIComponent(dir)}`}
+                >
+                    <MdDownloadForOffline />
+                </a>
+                <CopyLinkButton />
+            </div>
 
             <PhotoGrid
                 files={files}
