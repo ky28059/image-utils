@@ -19,5 +19,7 @@ export async function GET(req: NextRequest) {
         zip.addFile(f, raw);
     }));
 
-    return new Response(zip.toBuffer());
+    return new Response(zip.toBuffer(), {
+        headers: { 'Content-Disposition': `attachment; filename="${dir}.zip"` },
+    });
 }
