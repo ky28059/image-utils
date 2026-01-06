@@ -75,12 +75,8 @@ export default async function PhotosPage({ params, searchParams }: AlbumPagePara
             <h1 className="text-4xl font-bold mb-3">
                 {name}
             </h1>
-            {date && (
-                <p className="text-secondary">
-                    {date}
-                </p>
-            )}
             <p className="text-secondary">
+                {date && `${date} • `}
                 {files.length} photos
             </p>
 
