@@ -55,23 +55,15 @@ export async function getBucketContents(bucket: string, prefix?: string) {
  * Gets an object from S3 with the given bucket and key.
  * @param bucket The bucket to fetch.
  * @param key The key to fetch.
- * @returns The object body, as a `Buffer`.
+ * @returns The object body, as a `Readable` stream.
  */
-export async function getS3Object(bucket: string, key: string) {
+export async function getS3ObjectStream(bucket: string, key: string) {
     const response = await s3.send(new GetObjectCommand({
         Bucket: bucket,
         Key: key
     }));
 
-    const body = response.Body as Readable;
-
-    // Convert `Readable` to `Buffer`
-    const chunks = [];
-    for await (const chunk of body) {
-        chunks.push(chunk);
-    }
-
-    return Buffer.concat(chunks);
+    return response.Body as Readable;
 }
 
 /**
