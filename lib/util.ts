@@ -1,3 +1,4 @@
+import { DateTime, Interval } from 'luxon';
 import { PHOTOS_BUCKET, PREVIEW_BUCKET } from '@/config';
 
 
@@ -36,14 +37,20 @@ export function variants(file: string) {
 }
 
 export function parseFolderName(dir: string) {
-    const matches = dir.match(/(\d{4}-\d{2}-\d{2}(?:@[^ ]+)?) (.+)/);
-    if (!matches) return {
-        name: dir,
-        date: null
-    }
+    const matches = dir.match(/(\d{4})-(\d{2})-(\d{2})(?:@([^ ]+))? (.+)/);
+    if (!matches) return { name: dir, date: null }
 
-    return {
-        name: matches[2],
-        date: matches[1]
-    }
+    const [, year, month, day, toRaw, name] = matches;
+    const from = DateTime.local(Number(year), Number(month), Number(day));
+
+    if (!toRaw) return { name, date: from }
+
+    const parts = toRaw.split('-');
+    const to = DateTime.local(
+        Number(parts.at(-3) ?? year),
+        Number(parts.at(-2) ?? month),
+        Number(parts.at(-1))
+    );
+
+    return { name, date: Interval.fromDateTimes(from, to) }
 }

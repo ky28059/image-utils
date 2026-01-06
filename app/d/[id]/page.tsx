@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import { DateTime } from 'luxon';
 
 // Components
 import PhotoGrid from '@/app/d/[id]/PhotoGrid';
@@ -34,7 +35,7 @@ export async function generateMetadata({ params, searchParams }: AlbumPageParams
     if (image && files.includes(image)) {
         return {
             title: `${image} • ${name}`,
-            description: `${files.length} photos${date ? ` • ${date}` : ''}`,
+            description: `${files.length} photos${date ? ` • ${date.toLocaleString(DateTime.DATE_FULL)}` : ''}`,
             openGraph: {
                 images: fileToS3Url(dir, image)
             }
@@ -43,7 +44,7 @@ export async function generateMetadata({ params, searchParams }: AlbumPageParams
 
     return {
         title: name,
-        description: `${files.length} photos${date ? ` • ${date}` : ''}`,
+        description: `${files.length} photos${date ? ` • ${date.toLocaleString(DateTime.DATE_FULL)}` : ''}`,
         openGraph: {
             images: thumbnails[dir]
                 ? fileToS3Url(dir, thumbnails[dir])
@@ -77,7 +78,7 @@ export default async function PhotosPage({ params, searchParams }: AlbumPagePara
                 {name}
             </h1>
             <p className="text-secondary">
-                {date && `${date} • `}
+                {date && `${date.toLocaleString(DateTime.DATE_FULL)} • `}
                 {files.length} photos
             </p>
 
