@@ -16,7 +16,7 @@ export const thumbnails: Record<string, string> = {
     '2022-09-16@17 GRT Camping Trip': 'IMG_E5823.JPG',
     '2023-03-25@26 GRT Paly scrimmage': 'IMG_E7324.JPG',
     '2023-03-29 GRT Monterey Bay Aquarium': 'IMG_E7482.JPG',
-    '2023-05-30 Senior Picnic': 'IMG_E7902.JPG', // TODO?
+    '2023-05-30 Senior Picnic': 'IMG_E7902.JPG',
     '2023-06-19 San Francisco': 'IMG_E8183.JPG',
     // '2023-08-03 Liang surprise birthday party': 'IMG_E8325.JPG',
     '2023-08-19 Purdue B-Involved fair': 'IMG_E8439.JPG',
@@ -25,7 +25,7 @@ export const thumbnails: Record<string, string> = {
     '2023-12-27 Google Cloud Sunnyvale Campus': 'IMG_E9493.HEIC',
     '2024-03-15 Google Cloud Sunnyvale Campus 2': 'IMG_E9873.HEIC',
     '2024-04-08 Eclipse, Indianapolis': 'IMG_E0099.HEIC',
-    '2024-04-25@27 eCTF award ceremony': 'IMG_E0278.HEIC', // TODO?
+    '2024-04-25@27 eCTF award ceremony': 'IMG_E0278.HEIC',
     '2024-05-05 Stanford walk': 'IMG_E0670.HEIC',
     '2024-05-14@18 Tahoe': 'IMG_E0953.HEIC',
     '2024-05-22 Gunn cranes': 'IMG_E1170.HEIC',

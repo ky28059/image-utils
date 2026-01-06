@@ -1,10 +1,10 @@
 'use client'
 
+import type { ComponentProps } from 'react';
 import { GoShareAndroid } from 'react-icons/go';
 
 
-// TODO: fix props type?
-export default function CopyLinkButton(props: any) {
+export default function CopyLinkButton(props: ComponentProps<'button'>) {
     return (
         <button
             {...props}

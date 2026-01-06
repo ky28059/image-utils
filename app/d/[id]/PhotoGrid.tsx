@@ -102,7 +102,9 @@ export default function PhotoGrid(props: PhotoGridProps) {
                         className="max-h-[90vh]"
                         alt={props.files[selected]}
                     />
-                    <p className="text-sm mt-1.5">{props.files[selected]}</p>
+                    <Dialog.Title className="text-sm mt-1.5">
+                        {props.files[selected]}
+                    </Dialog.Title>
 
                     <div className="absolute top-0 left-full pl-2 flex flex-col text-xl">
                         <AnimatedTooltip tooltip="Copy image link" side="right">
