@@ -106,7 +106,7 @@ export default function PhotoGrid(props: PhotoGridProps) {
                 <p className="text-sm mt-1.5">{props.files[selected]}</p>
 
                 <div className="absolute top-0 left-full pl-2 flex flex-col text-xl">
-                    <TooltipWrapper tooltip="Copy image link">
+                    <TooltipWrapper tooltip="Copy image link" side="right">
                         <CopyLinkButton />
                     </TooltipWrapper>
                     <TooltipWrapper tooltip="Download image" side="right">
