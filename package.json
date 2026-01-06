@@ -15,20 +15,19 @@
   "license": "MIT",
   "dependencies": {
     "@aws-sdk/client-s3": "^3.816.0",
-    "@headlessui/react": "^2.2.0",
-    "@tailwindcss/postcss": "^4.1.17",
+    "@tailwindcss/postcss": "^4.1.18",
     "archiver": "^7.0.1",
     "heic-convert": "^2.1.0",
     "heic-decode": "^2.0.0",
     "next": "^16.1.1",
-    "postcss": "8.5.1",
+    "postcss": "^8.5.6",
     "radix-ui": "^1.4.3",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "react-hotkeys-hook": "^4.6.1",
     "react-icons": "^5.5.0",
     "sharp": "^0.33.5",
-    "tailwindcss": "^4.1.17"
+    "tailwindcss": "^4.1.18"
   },
   "devDependencies": {
     "@types/archiver": "^7.0.0",

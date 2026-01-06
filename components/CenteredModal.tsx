@@ -1,33 +1,26 @@
 import type { ReactNode } from 'react';
-import { Dialog, DialogBackdrop, DialogPanel } from '@headlessui/react';
+import { Dialog } from 'radix-ui';
 
 
 type CenteredModalProps = {
     open: boolean,
-    onClose: () => void,
+    setOpen: (open: boolean) => void,
     className: string,
     children: ReactNode
 }
-export default function CenteredModal(props: CenteredModalProps) {
-    const { open, onClose, className, children } = props;
-
+export default function CenteredModal(props: CenteredModalProps) { // TODO: naming?
     return (
-        <Dialog
-            className="fixed z-40 inset-0 flex items-center justify-center"
-            open={open}
-            onClose={onClose}
+        <Dialog.Root
+            open={props.open}
+            onOpenChange={props.setOpen}
         >
-            <DialogBackdrop
-                transition
-                className="fixed inset-0 bg-black/85 transition duration-300 data-closed:duration-200 ease-out data-closed:ease-in data-closed:opacity-0"
-            />
+            <Dialog.Portal>
+                <Dialog.Overlay className="fixed inset-0 bg-black/85 animate-dialog-overlay" />
 
-            <DialogPanel
-                transition
-                className={className + ' transition duration-300 data-closed:duration-200 ease-out data-closed:ease-in data-closed:scale-95 data-closed:opacity-0'}
-            >
-                {children}
-            </DialogPanel>
-        </Dialog>
+                <Dialog.Content className={props.className + ' animate-dialog-content focus:outline-none'}>
+                    {props.children}
+                </Dialog.Content>
+            </Dialog.Portal>
+        </Dialog.Root>
     )
 }

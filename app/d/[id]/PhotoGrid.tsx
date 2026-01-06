@@ -2,12 +2,13 @@
 
 import { useState } from 'react';
 import { useHotkeys } from 'react-hotkeys-hook';
+import { Dialog } from 'radix-ui';
 
 // Components
 import ClickablePhoto from '@/app/d/[id]/ClickablePhoto';
 import CenteredModal from '@/components/CenteredModal';
 import CopyLinkButton from '@/components/CopyLinkButton';
-import TooltipWrapper from '@/components/TooltipWrapper';
+import AnimatedTooltip from '@/components/AnimatedTooltip';
 
 // Utils
 import { fileToS3OriginalUrl, fileToS3Url } from '@/lib/util';
@@ -73,16 +74,13 @@ export default function PhotoGrid(props: PhotoGridProps) {
             ))}
 
             <CenteredModal
-                className="relative flex flex-col max-w-[80%]"
+                className="fixed z-40 inset-0 flex items-center justify-center"
                 open={open}
-                onClose={closeModal}
+                setOpen={closeModal} // TODO
             >
-                <button
-                    className="cursor-pointer fixed left-4 top-4 z-10 p-2 rounded-full hover:bg-white/10 transition duration-100"
-                    onClick={closeModal}
-                >
+                <Dialog.Close className="cursor-pointer fixed left-4 top-4 z-10 p-2 rounded-full hover:bg-white/10 transition duration-100">
                     <FaArrowLeft />
-                </button>
+                </Dialog.Close>
 
                 <button
                     className="flex items-center cursor-pointer fixed left-0 pl-6 inset-y-0 w-[30vw] text-transparent hover:text-white transition duration-200 focus:outline-none"
@@ -98,26 +96,28 @@ export default function PhotoGrid(props: PhotoGridProps) {
                     <FaChevronRight />
                 </button>
 
-                <img
-                    src={fileToS3Url(props.dir, props.files[selected])}
-                    className="max-h-[90vh]"
-                    alt={props.files[selected]}
-                />
-                <p className="text-sm mt-1.5">{props.files[selected]}</p>
+                <div className="relative flex flex-col max-w-[80%]">
+                    <img
+                        src={fileToS3Url(props.dir, props.files[selected])}
+                        className="max-h-[90vh]"
+                        alt={props.files[selected]}
+                    />
+                    <p className="text-sm mt-1.5">{props.files[selected]}</p>
 
-                <div className="absolute top-0 left-full pl-2 flex flex-col text-xl">
-                    <TooltipWrapper tooltip="Copy image link" side="right">
-                        <CopyLinkButton />
-                    </TooltipWrapper>
-                    <TooltipWrapper tooltip="Download image" side="right">
-                        <a
-                            download
-                            className="cursor-pointer text-primary hover:text-white p-2 rounded-full hover:bg-white/10 transition duration-100"
-                            href={fileToS3OriginalUrl(props.dir, props.files[selected])}
-                        >
-                            <MdDownloadForOffline />
-                        </a>
-                    </TooltipWrapper>
+                    <div className="absolute top-0 left-full pl-2 flex flex-col text-xl">
+                        <AnimatedTooltip tooltip="Copy image link" side="right">
+                            <CopyLinkButton />
+                        </AnimatedTooltip>
+                        <AnimatedTooltip tooltip="Download image" side="right">
+                            <a
+                                download
+                                className="cursor-pointer text-primary hover:text-white p-2 rounded-full hover:bg-white/10 transition duration-100"
+                                href={fileToS3OriginalUrl(props.dir, props.files[selected])}
+                            >
+                                <MdDownloadForOffline />
+                            </a>
+                        </AnimatedTooltip>
+                    </div>
                 </div>
             </CenteredModal>
         </div>
