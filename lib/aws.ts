@@ -1,4 +1,12 @@
-import { _Object, DeleteObjectsCommand, ListObjectsV2Command, PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
+import {
+    _Object,
+    DeleteObjectsCommand,
+    GetObjectCommand,
+    ListObjectsV2Command,
+    PutObjectCommand,
+    S3Client
+} from '@aws-sdk/client-s3';
+import type { Readable } from 'node:stream';
 import { readFile } from 'node:fs/promises';
 
 // Utils
@@ -41,6 +49,29 @@ export async function getBucketContents(bucket: string, prefix?: string) {
         if (!IsTruncated) return ret;
         token = NextContinuationToken;
     }
+}
+
+/**
+ * Gets an object from S3 with the given bucket and key.
+ * @param bucket The bucket to fetch.
+ * @param key The key to fetch.
+ * @returns The object body, as a `Buffer`.
+ */
+export async function getS3Object(bucket: string, key: string) {
+    const response = await s3.send(new GetObjectCommand({
+        Bucket: bucket,
+        Key: key
+    }));
+
+    const body = response.Body as Readable;
+
+    // Convert `Readable` to `Buffer`
+    const chunks = [];
+    for await (const chunk of body) {
+        chunks.push(chunk);
+    }
+
+    return Buffer.concat(chunks);
 }
 
 /**

@@ -17,6 +17,8 @@
     "@aws-sdk/client-s3": "^3.816.0",
     "@headlessui/react": "^2.2.0",
     "@tailwindcss/postcss": "^4.1.17",
+    "@types/adm-zip": "^0.5.7",
+    "adm-zip": "^0.5.16",
     "heic-convert": "^2.1.0",
     "heic-decode": "^2.0.0",
     "next": "^16.1.1",
