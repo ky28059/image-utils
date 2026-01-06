@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import type { ReactNode } from 'react';
+import { Tooltip } from 'radix-ui';
 
 import { Inter } from 'next/font/google'
 
@@ -17,7 +18,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     return (
         <html lang="en" className="dark bg-midnight text-white">
             <body className={inter.className}>
-                {children}
+                <Tooltip.Provider>
+                    {children}
+                </Tooltip.Provider>
             </body>
         </html>
     )

@@ -7,6 +7,7 @@ import { useHotkeys } from 'react-hotkeys-hook';
 import ClickablePhoto from '@/app/d/[id]/ClickablePhoto';
 import CenteredModal from '@/components/CenteredModal';
 import CopyLinkButton from '@/components/CopyLinkButton';
+import TooltipWrapper from '@/components/TooltipWrapper';
 
 // Utils
 import { fileToS3OriginalUrl, fileToS3Url } from '@/lib/util';
@@ -105,14 +106,18 @@ export default function PhotoGrid(props: PhotoGridProps) {
                 <p className="text-sm mt-1.5">{props.files[selected]}</p>
 
                 <div className="absolute top-0 left-full pl-2 flex flex-col text-xl">
-                    <CopyLinkButton />
-                    <a
-                        download
-                        className="cursor-pointer text-primary hover:text-white p-2 rounded-full hover:bg-white/10 transition duration-100"
-                        href={fileToS3OriginalUrl(props.dir, props.files[selected])}
-                    >
-                        <MdDownloadForOffline />
-                    </a>
+                    <TooltipWrapper tooltip="Copy image link">
+                        <CopyLinkButton />
+                    </TooltipWrapper>
+                    <TooltipWrapper tooltip="Download image" side="right">
+                        <a
+                            download
+                            className="cursor-pointer text-primary hover:text-white p-2 rounded-full hover:bg-white/10 transition duration-100"
+                            href={fileToS3OriginalUrl(props.dir, props.files[selected])}
+                        >
+                            <MdDownloadForOffline />
+                        </a>
+                    </TooltipWrapper>
                 </div>
             </CenteredModal>
         </div>

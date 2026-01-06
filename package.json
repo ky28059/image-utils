@@ -22,6 +22,7 @@
     "heic-decode": "^2.0.0",
     "next": "^16.1.1",
     "postcss": "8.5.1",
+    "radix-ui": "^1.4.3",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "react-hotkeys-hook": "^4.6.1",
