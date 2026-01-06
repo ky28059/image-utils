@@ -15,9 +15,9 @@ export default function CenteredModal(props: CenteredModalProps) { // TODO: nami
             onOpenChange={props.setOpen}
         >
             <Dialog.Portal>
-                <Dialog.Overlay className="fixed inset-0 bg-black/85 animate-dialog-overlay" />
+                <Dialog.Overlay className="fixed inset-0 bg-black/85 animate-dialog-overlay data-[state=closed]:animate-dialog-overlay-out" />
 
-                <Dialog.Content className={props.className + ' animate-dialog-content focus:outline-none'}>
+                <Dialog.Content className={props.className + ' animate-dialog-content data-[state=closed]:animate-dialog-content-out focus:outline-none'}>
                     {props.children}
                 </Dialog.Content>
             </Dialog.Portal>
