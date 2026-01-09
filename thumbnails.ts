@@ -9,6 +9,7 @@ export const thumbnails: Record<string, string> = {
     '2021-09-18 GRT Beach Trip': 'IMG_3092.JPG',
     '2021-09-06@10-15 Floats \'22': 'IMG_3183.JPG',
     '2022-06-08 Yu-Ting\'s birthday': 'IMG_E4509.JPG',
+    '2022-06-10@17 Dillon Beach': 'IMG_E4674.JPG', // IMG_E4687.JPG, IMG_E4580.JPG
     '2022-06-18 Microsoft SVC': 'IMG_E4772.JPG',
     '2022-08-19 Welcome Back Dance': 'IMG_E5424.JPG',
     '2022-08-27@10-16 Floats \'23': 'IMG_E6038.JPG',
