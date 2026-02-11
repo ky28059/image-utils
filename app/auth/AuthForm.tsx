@@ -13,10 +13,11 @@ export default function AuthForm() {
             action={formAction}
         >
             <input
-                className="px-3 py-1 rounded-sm border border-tertiary bg-black/10"
+                className="px-3 py-1.5 w-80 rounded-sm border border-tertiary bg-black/10"
                 placeholder="Auth token"
                 name="token"
                 id="token"
+                type="password"
             />
             {state.error && (
                 <p className="text-red-500 text-sm mt-2">{state.error}</p>
