@@ -6,15 +6,13 @@ import { DateTime } from 'luxon';
 // Components
 import PhotoGrid from '@/app/d/[id]/PhotoGrid';
 import CopyLinkButton from '@/components/CopyLinkButton';
+import DownloadAlbumButton from '@/app/d/[id]/DownloadAlbumButton';
 import AnimatedTooltip from '@/components/AnimatedTooltip';
 
 // Utils
 import { thumbnails } from '@/thumbnails';
 import { getHostedDirectory } from '@/lib/aws';
 import { fileToS3Url, parseFolderName, variants } from '@/lib/util';
-
-// Icons
-import { MdDownloadForOffline } from 'react-icons/md';
 
 
 type AlbumPageParams = {
@@ -83,15 +81,7 @@ export default async function PhotosPage({ params, searchParams }: AlbumPagePara
             </p>
 
             <div className="flex mt-1 -ml-2 text-xl">
-                <AnimatedTooltip tooltip="Download album as ZIP">
-                    <a
-                        download
-                        className="cursor-pointer text-primary hover:text-white p-2 rounded-full hover:bg-white/10 transition duration-100"
-                        href={`/zip?dir=${encodeURIComponent(dir)}`}
-                    >
-                        <MdDownloadForOffline />
-                    </a>
-                </AnimatedTooltip>
+                <DownloadAlbumButton dir={dir} />
                 <AnimatedTooltip tooltip="Copy album link">
                     <CopyLinkButton />
                 </AnimatedTooltip>
