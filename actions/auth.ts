@@ -12,6 +12,6 @@ export async function login(_: any, data: FormData) {
         return { error: 'Invalid token provided.' };
 
     const c = await cookies();
-    c.set(AUTH_COOKIE_NAME, token);
+    c.set(AUTH_COOKIE_NAME, token, { maxAge: 16070400 }); // ~6 months
     redirect('/');
 }
