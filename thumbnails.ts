@@ -50,6 +50,8 @@ export const thumbnails: Record<string, string> = {
     '2025-12-28 Palo Alto Baylands': 'IMG_E7890.HEIC', // IMG_E7900.HEIC
     '2026-01-03 Mission Peak': 'IMG_E8092.HEIC', // IMG_E8055.HEIC, IMG_E8074.HEIC
     '2026-01-05 Microsoft SVC': 'IMG_E8124.HEIC',
+    // '2026-01-08 Stanford dining': 'IMG_E8180.HEIC',
+    '2026-02-06 Celery Bog': 'IMG_E8342.HEIC', // IMG_E8291.HEIC
     'Misc': 'IMG_E7198.JPG',
     'Art': 'IMG_E0160.HEIC',
     'Cooking': 'IMG_E6166.HEIC',
