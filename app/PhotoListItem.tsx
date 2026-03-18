@@ -23,9 +23,9 @@ export default function PhotoListItem(props: PhotoListItemProps) {
             ) : (
                 <div className="h-18 w-32 bg-black/20" />
             )}
-            <div className="pl-6 pr-2 px-4">
+            <div className="pl-6 pr-2 px-4 text-sm">
                 <h3 className="font-medium">{props.name}</h3>
-                <p className="text-sm text-secondary">
+                <p className="text-secondary">
                     {props.size} photos
                 </p>
             </div>
