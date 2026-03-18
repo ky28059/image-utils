@@ -5,16 +5,16 @@ import { parseFolderName } from '@/lib/util';
 
 
 type PhotosAlbumsViewProps = {
-    dirs: { [key: string]: string[] },
+    dirs: [string, string[]][],
 }
 
 export default function PhotosAlbumsView(props: PhotosAlbumsViewProps) {
     const months = Object.groupBy(
-        Object.entries(props.dirs).filter(([dir,]) => parseFolderName(dir).date),
+        props.dirs.filter(([dir,]) => parseFolderName(dir).date),
         ([dir,]) => dir.slice(0, 7) // Keep only `yyyy-mm`
     );
 
-    const remaining = Object.entries(props.dirs).filter(([dir,]) => !parseFolderName(dir).date);
+    const remaining = props.dirs.filter(([dir,]) => !parseFolderName(dir).date);
 
     return (
         <div className="flex flex-col gap-8">
@@ -30,10 +30,12 @@ export default function PhotosAlbumsView(props: PhotosAlbumsViewProps) {
                 )
             })}
 
-            <PhotoAlbumRow
-                dirs={remaining}
-                label="Misc"
-            />
+            {remaining.length > 0 && (
+                <PhotoAlbumRow
+                    dirs={remaining}
+                    label="Misc"
+                />
+            )}
         </div>
     )
 }

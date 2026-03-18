@@ -3,13 +3,13 @@ import { thumbnails } from '@/thumbnails';
 
 
 type PhotosListViewProps = {
-    dirs: { [key: string]: string[] },
+    dirs: [string, string[]][],
 }
 
 export default function PhotosListView(props: PhotosListViewProps) {
     return (
         <div className="flex flex-col gap-1.5">
-            {Object.entries(props.dirs).sort(([a,], [b,]) => dirCompare(a, b)).map(([d, photos]) => (
+            {props.dirs.sort(([a,], [b,]) => dirCompare(a, b)).map(([d, photos]) => (
                 <PhotoListItem
                     name={d}
                     size={photos.length}

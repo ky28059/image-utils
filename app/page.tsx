@@ -1,10 +1,5 @@
 import type { Metadata } from 'next';
-
-// Components
-import PhotosListView from '@/app/PhotosListView';
-import PhotosAlbumsView from '@/app/PhotosAlbumsView';
-
-// Utils
+import PhotosWrapper from '@/app/PhotosWrapper';
 import { getAllHostedPhotos } from '@/lib/aws';
 
 
@@ -21,12 +16,12 @@ export default async function Photos() {
             <h1 className="text-5xl font-bold mb-2">
                 Photos
             </h1>
-            <p className="text-secondary text-sm mb-6">
+            <p className="text-secondary text-sm mb-3">
                 {Object.keys(dirs).length} albums,{' '}
                 {Object.values(dirs).reduce((s, e) => s + e.length, 0)} photos
             </p>
 
-            <PhotosAlbumsView dirs={dirs} />
+            <PhotosWrapper dirs={dirs} />
         </div>
     )
 }

@@ -44,12 +44,12 @@ export const thumbnails: Record<string, string> = {
     '2025-05-20@23 Carlsbad, UCSD, La Jolla': 'IMG_E5688.HEIC',
     '2025-05-26 San Francisco Chinatown': 'IMG_E5941.HEIC',
     '2025-07-09@12 Dice Finals, NYC': 'IMG_E6340.HEIC', // IMG_6389.HEIC, IMG_E6445.HEIC
-    '2025-08-17 Redwood City': 'IMG_E6723.HEIC', // IMG_E6716.HEIC
+    // '2025-08-17 Redwood City': 'IMG_E6723.HEIC', // IMG_E6716.HEIC
     '2025-11-12 Celery Bog': 'IMG_E7358.HEIC',
     '2025-12-08@10 Epic, Madison': 'IMG_E7561.HEIC', // IMG_E7740.HEIC
     '2025-12-28 Palo Alto Baylands': 'IMG_E7890.HEIC', // IMG_E7900.HEIC
     '2026-01-03 Mission Peak': 'IMG_E8092.HEIC', // IMG_E8055.HEIC, IMG_E8074.HEIC
-    '2026-01-05 Microsoft SVC': 'IMG_E8124.HEIC',
+    // '2026-01-05 Microsoft SVC': 'IMG_E8124.HEIC',
     // '2026-01-08 Stanford dining': 'IMG_E8180.HEIC',
     '2026-02-06 Celery Bog': 'IMG_E8342.HEIC', // IMG_E8291.HEIC
     'Misc': 'IMG_E7198.JPG',
