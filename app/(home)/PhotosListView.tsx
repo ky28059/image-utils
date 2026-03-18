@@ -1,4 +1,4 @@
-import PhotoListItem from '@/app/PhotoListItem';
+import PhotoListItem from '@/app/(home)/PhotoListItem';
 import { thumbnails } from '@/thumbnails';
 
 

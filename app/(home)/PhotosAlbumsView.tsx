@@ -1,4 +1,4 @@
-import PhotoAlbumRow from '@/app/PhotoAlbumRow';
+import PhotoAlbumRow from '@/app/(home)/PhotoAlbumRow';
 
 // Utils
 import { parseFolderName } from '@/lib/util';

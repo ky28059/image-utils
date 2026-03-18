@@ -1,5 +1,5 @@
-import PhotoAlbum from '@/app/PhotoAlbum';
-import PhotoAlbumListItem from '@/app/PhotoAlbumListItem';
+import PhotoAlbum from '@/app/(home)/PhotoAlbum';
+import PhotoAlbumListItem from '@/app/(home)/PhotoAlbumListItem';
 import { thumbnails } from '@/thumbnails';
 
 
