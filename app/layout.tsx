@@ -16,8 +16,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
     return (
-        <html lang="en" className="dark bg-midnight text-white overflow-y-scroll">
-            <body className={inter.className}>
+        <html lang="en" className="dark bg-midnight text-white">
+            <body className={inter.className + ' overflow-y-scroll'}>
                 <Tooltip.Provider>
                     {children}
                 </Tooltip.Provider>
