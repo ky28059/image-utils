@@ -25,7 +25,7 @@ export default function PhotosWrapper(props: PhotosWrapperProps) {
         <div>
             <div className="flex items-center mb-2">
                 <input
-                    className="flex-none w-48 px-3 py-1.5 text-sm rounded border border-tertiary mr-auto"
+                    className="flex-none w-72 px-3 py-1.5 text-sm rounded border border-tertiary mr-auto"
                     placeholder="Search albums"
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
@@ -37,8 +37,12 @@ export default function PhotosWrapper(props: PhotosWrapperProps) {
                 />
             </div>
             <p className="text-secondary text-sm mb-6">
-                {filtered.length} albums,{' '}
-                {filtered.reduce((s, [,e]) => s + e.length, 0)} photos shown •{' '}
+                {filtered.length !== Object.keys(props.dirs).length && (
+                    <>
+                        {filtered.length} albums,{' '}
+                        {filtered.reduce((s, [,e]) => s + e.length, 0)} photos shown •{' '}
+                    </>
+                )}
                 {Object.keys(props.dirs).length} albums,{' '}
                 {Object.values(props.dirs).reduce((s, e) => s + e.length, 0)} photos total
             </p>
