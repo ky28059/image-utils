@@ -52,6 +52,7 @@ export const thumbnails: Record<string, string> = {
     // '2026-01-05 Microsoft SVC': 'IMG_E8124.HEIC',
     // '2026-01-08 Stanford dining': 'IMG_E8180.HEIC',
     '2026-02-06 Celery Bog': 'IMG_E8342.HEIC', // IMG_E8291.HEIC
+    '2026-03-14@21 Pittsburgh, CMU': 'IMG_E8582.HEIC', // IMG_E8561.HEIC, IMG_E8561.HEIC
     'Misc': 'IMG_E7198.JPG',
     'Art': 'IMG_E0160.HEIC',
     'Cooking': 'IMG_E6166.HEIC',
