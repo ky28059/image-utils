@@ -13,7 +13,7 @@ export default function PhotoAlbumRow(props: PhotoAlbumRowProps) {
     const other = props.dirs.filter(([d,]) => !thumbnails[d]);
 
     return (
-        <div className="relative flex flex-wrap gap-6">
+        <div className="relative flex flex-wrap gap-x-6 gap-y-4">
             <p className="absolute -left-18 text-secondary text-sm">
                 {props.label}
             </p>
