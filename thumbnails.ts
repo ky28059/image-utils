@@ -35,7 +35,7 @@ export const thumbnails: Record<string, string> = {
     '2024-06-11@08-06 Boston, MIT Beaverworks': 'IMG_E2551.HEIC',
     '2024-08-11 Mission Peak': 'IMG_E2835.HEIC',
     '2024-09-01 Lafayette, Wabash Landing': 'IMG_E2959.HEIC',
-    '2024-09-18 Lafayette II': 'IMG_E3141.HEIC',
+    // '2024-09-18 Lafayette II': 'IMG_E3141.HEIC',
     '2024-11-26@12-01 Chicago': 'IMG_E3726.HEIC',
     '2025-04-10@14 Pwnme, Paris': 'IMG_E5008.HEIC',
     '2025-01-04@07 Shanghai': 'IMG_E4106.HEIC',
@@ -56,6 +56,9 @@ export const thumbnails: Record<string, string> = {
     '2026-05-17 Monument Peak': 'IMG_E9178.HEIC',
     '2026-05-24 San Francisco': 'IMG_E9419.HEIC', // IMG_E9413.HEIC, IMG_E9402.HEIC
     '2026-05-26@30 New York': 'IMG_E9497.HEIC',
+    '2026-06-05 Stanford Dish': 'IMG_E9796.HEIC',
+    // '2026-06-06 Perplexity, SF': 'IMG_E9813.HEIC',
+    '2026-06-09 NVIDIA, Alviso salt flats': 'IMG_E9878.HEIC',
     'Misc': 'IMG_E7198.JPG',
     'Art': 'IMG_E0160.HEIC',
     'Cooking': 'IMG_E6166.HEIC',

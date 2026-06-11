@@ -9,7 +9,7 @@ type PhotosListViewProps = {
 export default function PhotosListView(props: PhotosListViewProps) {
     return (
         <div className="flex flex-col gap-1.5">
-            {props.dirs.sort(([a,], [b,]) => dirCompare(a, b)).map(([d, photos]) => (
+            {props.dirs.toSorted(([a,], [b,]) => dirCompare(a, b)).map(([d, photos]) => (
                 <PhotoListItem
                     name={d}
                     size={photos.length}
