@@ -7,7 +7,6 @@ import { DateTime } from 'luxon';
 import PhotoGrid from '@/app/d/[id]/PhotoGrid';
 import CopyLinkButton from '@/components/CopyLinkButton';
 import DownloadAlbumButton from '@/app/d/[id]/DownloadAlbumButton';
-import AnimatedTooltip from '@/components/AnimatedTooltip';
 
 // Utils
 import { thumbnails } from '@/thumbnails';
@@ -82,9 +81,7 @@ export default async function PhotosPage({ params, searchParams }: AlbumPagePara
 
             <div className="flex mt-1 -ml-2 text-xl">
                 <DownloadAlbumButton dir={dir} />
-                <AnimatedTooltip tooltip="Copy album link">
-                    <CopyLinkButton />
-                </AnimatedTooltip>
+                <CopyLinkButton tooltip="Copy album link" />
             </div>
 
             <PhotoGrid

@@ -8,6 +8,7 @@ type CenteredModalProps = {
     className: string,
     children: ReactNode
 }
+
 export default function CenteredModal(props: CenteredModalProps) { // TODO: naming?
     return (
         <Dialog.Root

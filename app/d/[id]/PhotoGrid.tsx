@@ -107,9 +107,7 @@ export default function PhotoGrid(props: PhotoGridProps) {
                     </Dialog.Title>
 
                     <div className="absolute top-0 left-full pl-2 flex flex-col text-xl">
-                        <AnimatedTooltip tooltip="Copy image link" side="right">
-                            <CopyLinkButton />
-                        </AnimatedTooltip>
+                        <CopyLinkButton tooltip="Copy image link" side="right" />
                         <AnimatedTooltip tooltip="Download image" side="right">
                             <a
                                 download
