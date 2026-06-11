@@ -14,14 +14,14 @@
   "author": "ky28059",
   "license": "MIT",
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.816.0",
-    "@tailwindcss/postcss": "^4.1.18",
-    "archiver": "^7.0.1",
+    "@aws-sdk/client-s3": "^3.1066.0",
+    "@tailwindcss/postcss": "^4.3.0",
+    "archiver": "^8.0.0",
     "heic-convert": "^2.1.0",
     "heic-decode": "^2.0.0",
     "luxon": "^3.7.2",
-    "next": "^16.1.1",
-    "postcss": "^8.5.6",
+    "next": "^16.2.9",
+    "postcss": "^8.5.15",
     "radix-ui": "^1.4.3",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
@@ -31,7 +31,7 @@
     "tailwindcss": "^4.1.18"
   },
   "devDependencies": {
-    "@types/archiver": "^7.0.0",
+    "@types/archiver": "^8.0.0",
     "@types/heic-convert": "^2.1.0",
     "@types/heic-decode": "^1.1.2",
     "@types/luxon": "^3.7.1",
