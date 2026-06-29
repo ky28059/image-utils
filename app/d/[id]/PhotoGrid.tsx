@@ -23,6 +23,7 @@ type PhotoGridProps = {
     dir: string,
     initialSelected?: number,
 }
+
 export default function PhotoGrid(props: PhotoGridProps) {
     const [open, setOpen] = useState(props.initialSelected !== undefined);
     const [selected, setSelected] = useState(props.initialSelected ?? 0);

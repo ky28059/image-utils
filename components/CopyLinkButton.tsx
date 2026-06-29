@@ -3,6 +3,7 @@
 import { useState, ButtonHTMLAttributes, FocusEvent, MouseEvent } from 'react';
 import type { TooltipContentProps } from '@radix-ui/react-tooltip';
 import AnimatedTooltip from '@/components/AnimatedTooltip';
+import { cn } from '@/lib/cn';
 import { GoShareAndroid } from 'react-icons/go';
 
 
@@ -10,10 +11,6 @@ type CopyLinkButtonProps = Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'childr
     url?: string,
     tooltip: string,
     side?: TooltipContentProps['side'] // TODO: include all tooltip props?
-}
-
-function cx(...classes: Array<string | false | null | undefined>) {
-    return classes.filter(Boolean).join(' ');
 }
 
 export default function CopyLinkButton({
@@ -59,7 +56,7 @@ export default function CopyLinkButton({
             <button
                 type="button"
                 aria-label="Copy link"
-                className={cx(
+                className={cn(
                     'cursor-pointer text-primary hover:text-white p-2 rounded-full hover:bg-white/10 transition duration-100',
                     className
                 )}
