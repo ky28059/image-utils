@@ -1,6 +1,6 @@
 import { readdir } from 'node:fs/promises';
 import { extname } from 'node:path';
-import { BASE_PATH } from '@/config';
+import { BASE_PATH } from '@/lib/config';
 
 
 // TODO: handle videos (.mov and .mp4)?

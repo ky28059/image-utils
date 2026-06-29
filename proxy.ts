@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { AUTH_COOKIE_NAME } from '@/config';
+import { AUTH_COOKIE_NAME } from '@/lib/config';
 
 
 export function proxy(request: NextRequest) {

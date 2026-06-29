@@ -1,5 +1,5 @@
 import { DateTime, Interval } from 'luxon';
-import { PHOTOS_BUCKET, PREVIEW_BUCKET } from '@/config';
+import { PHOTOS_BUCKET, PREVIEW_BUCKET } from '@/lib/config';
 
 
 export function filename(file: string) {

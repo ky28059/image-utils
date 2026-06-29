@@ -7,7 +7,7 @@ import { MdDownloadForOffline } from 'react-icons/md';
 import AnimatedTooltip from '@/components/AnimatedTooltip';
 
 // Utils
-import { AUTH_COOKIE_NAME } from '@/config';
+import { AUTH_COOKIE_NAME } from '@/lib/config';
 
 
 export default function DownloadAlbumButton(props: { dir: string }) {

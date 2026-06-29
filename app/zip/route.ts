@@ -4,7 +4,7 @@ import { ZipArchive } from 'archiver';
 
 // Utils
 import { getHostedDirectory, getS3ObjectStream } from '@/lib/aws';
-import { AUTH_COOKIE_NAME, PHOTOS_BUCKET } from '@/config';
+import { AUTH_COOKIE_NAME, PHOTOS_BUCKET } from '@/lib/config';
 
 
 export async function GET(req: NextRequest) {

@@ -14,7 +14,7 @@ import { optimizeSmallToBuffer, optimizeToBuffer } from './optimize';
 import { filename } from './util';
 
 // Config
-import { BASE_PATH, PHOTOS_BUCKET, PREVIEW_BUCKET } from '@/config';
+import { BASE_PATH, PHOTOS_BUCKET, PREVIEW_BUCKET } from '@/lib/config';
 
 
 const s3 = new S3Client({
