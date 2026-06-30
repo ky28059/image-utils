@@ -1,8 +1,10 @@
 # image-utils
  Utility scripts for managing and hosting transferred iPhone photos.
 
-To run locally, create a `.env` exporting your S3 IAM account credentials like so:
+To run locally, create a `.env` exporting your auth token and S3 IAM account credentials like so:
 ```env
+AUTH_TOKEN=...
+
 ACCESS_KEY_ID=...
 SECRET_ACCESS_KEY=...
 ```
