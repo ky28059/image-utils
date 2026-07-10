@@ -17,7 +17,7 @@ import { filename } from './util';
 import { BASE_PATH, PHOTOS_BUCKET, PREVIEW_BUCKET } from '@/lib/config';
 
 
-const s3 = new S3Client({
+export const s3 = new S3Client({
     region: 'us-east-1',
     credentials: {
         accessKeyId: process.env.ACCESS_KEY_ID!,
@@ -135,7 +135,9 @@ export async function uploadOptimized(dir: string, file: string) {
         new PutObjectCommand({
             Bucket: PREVIEW_BUCKET,
             Body: optimizedBody,
-            Key: `${dir}/${filename(file)}-preview.webp`
+            Key: `${dir}/${filename(file)}-preview.webp`,
+            ContentType: 'image/webp',
+            CacheControl: 'public, max-age=86400'
         })
     );
 }
@@ -148,7 +150,9 @@ export async function uploadOptimizedSmall(dir: string, file: string) {
         new PutObjectCommand({
             Bucket: PREVIEW_BUCKET,
             Body: optimizedBody,
-            Key: `${dir}/${filename(file)}-preview-small.webp`
+            Key: `${dir}/${filename(file)}-preview-small.webp`,
+            ContentType: 'image/webp',
+            CacheControl: 'public, max-age=86400'
         })
     );
 }
