@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useHotkeys } from 'react-hotkeys-hook';
 import { Dialog } from 'radix-ui';
 
@@ -62,6 +62,17 @@ export default function PhotoGrid(props: PhotoGridProps) {
     // Decrement and increment image hotkeys
     useHotkeys('left', decSelected, [selected]);
     useHotkeys('right', incSelected, [selected]);
+
+    // Preload browser cache with adjacent photos
+    useEffect(() => {
+        for (const index of [selected - 1, selected + 1]) {
+            const file = props.files[index];
+            if (!file) continue;
+
+            const image = new Image();
+            image.src = fileToS3Url(props.dir, file);
+        }
+    }, [props.dir, props.files, selected]);
 
     return (
         <div className="group grid grid-cols-4 sm:grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-0.5 sm:gap-1.5 mt-6 -mx-7.5 sm:mx-0">
